@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="ru"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Магазин мастерских — Школа профессий</title>
+  <meta name="description" content="Изделия ручной работы мастерских «Школы профессий»: керамика, текстиль, сумки, варенье, свечи и подарочные наборы. Покупая, вы поддерживаете рабочие места нейроотличных людей.">
+  <link rel="icon" href="https://shkola-professii.ru/wp-content/uploads/2021/12/cropped-logo-512x512-1-32x32.png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css">
+  <style>
+    :root {
+      --red: #E8735A;
+      --red-deep: #D4503A;
+      --blue: #5B8EC9;
+      --blue-deep: #3D6FA3;
+      --blue-dark: #2C5282;
+      --amber: #E5A83D;
+      --amber-soft: #F5D68A;
+      --cream: #FAF6E8;
+      --cream-warm: #FFF8EC;
+      --green: #8BB87A;
+      --dark: #2D3748;
+      --dark-soft: #4A5568;
+      --gray: #718096;
+      --gray-light: #A0AEC0;
+      --gray-bg: #F7FAFC;
+      --white: #FFFFFF;
+      --font: 'Golos Text', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius: 20px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --shadow-sm: 0 2px 8px rgba(45,55,72,0.04);
+      --shadow: 0 4px 20px rgba(45,55,72,0.06);
+      --shadow-md: 0 8px 32px rgba(45,55,72,0.08);
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;font-size:17px;overflow-x:clip}
+    body{font-family:var(--font);color:var(--dark);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+    :focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+    /* HEADER like cvety */
+    .header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.88);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(45,55,72,0.05)}
+    .header__inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .header__logo-img{height:44px;width:auto}
+    .header__nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:center;align-items:center;height:72px;z-index:1001;pointer-events:none}
+    .header__nav-inner{display:flex;gap:4px;justify-content:center;pointer-events:auto}
+    .header__nav-link{padding:8px 16px;font-size:0.88rem;font-weight:500;color:var(--dark-soft);border-radius:100px;transition:var(--transition)}
+    .header__nav-link:hover{color:var(--blue-deep);background:rgba(91,142,201,0.08)}
+    .header__cta{display:flex;align-items:center;gap:12px}
+    .header__donate{inline-flex;display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--red);color:var(--white);border-radius:100px;font-size:0.85rem;font-weight:600;transition:var(--transition)}
+    .header__donate:hover{background:var(--red-deep);transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,115,90,0.3)}
+    .header__burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+    .header__burger span{width:22px;height:2px;background:var(--dark);border-radius:2px;transition:var(--transition)}
+
+    /* BUTTONS */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;font-family:var(--font);font-size:0.95rem;font-weight:600;border:none;border-radius:100px;cursor:pointer;transition:var(--transition);white-space:nowrap;text-decoration:none}
+    .btn--primary{background:var(--red);color:var(--white)}
+    .btn--primary:hover{background:var(--red-deep);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,115,90,0.3)}
+    .btn--dark{background:var(--blue-dark);color:var(--white)}
+    .btn--dark:hover{background:#1E3A5F;transform:translateY(-2px)}
+    .btn--ghost{background:rgba(255,255,255,0.15);color:var(--white);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3)}
+    .btn--ghost:hover{background:rgba(255,255,255,0.25)}
+    .btn--warm{background:var(--amber);color:var(--dark)}
+    .btn--warm:hover{background:#D49A30;transform:translateY(-2px)}
+    .btn--white{background:var(--white);color:var(--blue-dark)}
+    .btn--white:hover{background:rgba(255,255,255,0.9);transform:translateY(-2px)}
+    .btn--lg{padding:16px 36px;font-size:1rem}
+    .btn i{font-size:1.1em}
+
+    /* HERO */
+    .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
+    .hero__bg{position:absolute;inset:0}
+    .hero__img{width:100%;height:100%;object-fit:cover;object-position:center}
+    .hero__overlay{position:absolute;inset:0;background:linear-gradient(160deg, rgba(44,82,130,0.88) 0%, rgba(61,111,163,0.82) 35%, rgba(232,115,90,0.7) 100%)}
+    .hero__content{position:relative;z-index:2;padding:150px 0 90px;max-width:680px}
+    .hero__badge{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);border-radius:100px;font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.9);margin-bottom:28px;letter-spacing:0.02em}
+    .hero__badge i{color:var(--amber-soft)}
+    .hero__title{font-size:clamp(2.6rem, 6vw, 4.2rem);font-weight:700;color:var(--white);line-height:1.08;margin-bottom:20px;letter-spacing:-0.02em}
+    .hero__subtitle{font-size:clamp(1rem,1.8vw,1.15rem);color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:32px;max-width:560px}
+    .hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+    .hero__trust{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.75);font-size:0.88rem}
+    .hero__trust img{height:28px;width:auto;filter:brightness(0) invert(1);opacity:0.85}
+    .hero__cards{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:520px;margin-left:auto}
+    .hero__card{background:rgba(255,255,255,0.96);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-md)}
+    .hero__card-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:12px}
+    .hero__card:nth-child(1) .hero__card-icon{background:rgba(232,115,90,0.1);color:var(--red)}
+    .hero__card:nth-child(2) .hero__card-icon{background:rgba(91,142,201,0.1);color:var(--blue)}
+    .hero__card:nth-child(3) .hero__card-icon{background:rgba(229,168,61,0.12);color:#B78200}
+    .hero__card-title{font-weight:600;font-size:0.95rem;margin-bottom:4px}
+    .hero__card-text{font-size:0.85rem;color:var(--gray);line-height:1.5}
+
+    /* SECTIONS */
+    .section{padding:60px 0}
+    .section--cream{background:var(--cream)}
+    .section--white{background:var(--white)}
+    .section--dark{background:linear-gradient(160deg, var(--blue-dark) 0%, #1E3A5F 50%, #2C4A6E 100%);position:relative;overflow:hidden}
+    .section--dark::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle, rgba(229,168,61,0.08) 0%, transparent 70%)}
+    .section-header{text-align:center;margin-bottom:48px;position:relative}
+    .section-tag{display:inline-block;padding:6px 16px;background:rgba(91,142,201,0.08);color:var(--blue-deep);border-radius:100px;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px}
+    .section-tag--light{background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8)}
+    .section-title{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:600;color:var(--dark);line-height:1.15;letter-spacing:-0.01em}
+    .section-title--light{color:var(--white)}
+    .section-desc{font-size:1.05rem;color:var(--gray);margin-top:12px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6}
+    .section-desc--light{color:rgba(255,255,255,0.7)}
+
+    /* SHOWCASE */
+    .showcase{background:var(--white);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);border:1px solid rgba(45,55,72,0.06)}
+    .tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+    .tab{min-height:44px;padding:11px 18px;border:1px solid rgba(45,55,72,0.08);border-radius:100px;color:var(--dark-soft);background:var(--gray-bg);font:inherit;font-weight:600;font-size:0.9rem;cursor:pointer;transition:var(--transition)}
+    .tab:hover{background:var(--white);border-color:rgba(91,142,201,0.2);transform:translateY(-1px)}
+    .tab[aria-selected="true"]{color:var(--white);background:var(--blue-dark);border-color:var(--blue-dark);box-shadow:0 4px 16px rgba(44,82,130,0.25)}
+    .showcase-body{display:grid;grid-template-columns:0.42fr 1fr;gap:24px}
+    .workshop-note{padding:28px;background:var(--cream-warm);border-radius:var(--radius-md);border:1px solid rgba(229,168,61,0.12)}
+    .workshop-note h3{font-size:1.15rem;font-weight:600;margin-bottom:10px}
+    .workshop-note p{font-size:0.92rem;color:var(--gray);line-height:1.65;margin-bottom:16px}
+    .badge-line{display:flex;flex-wrap:wrap;gap:8px}
+    .badge{padding:6px 12px;border-radius:100px;background:var(--white);color:var(--blue-deep);font-size:0.78rem;font-weight:600;box-shadow:var(--shadow-sm)}
+    .product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .item-card{display:flex;flex-direction:column;background:var(--white);border:1px solid rgba(45,55,72,0.06);border-radius:var(--radius-md);overflow:hidden;transition:var(--transition)}
+    .item-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:rgba(91,142,201,0.15)}
+    .item-image{position:relative;min-height:180px;background:var(--cream);overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .item-image::before{content:"";position:absolute;inset:22px;border-radius:var(--radius-sm);background:linear-gradient(145deg, #fff, rgba(91,142,201,0.12));box-shadow:inset -14px -18px 0 rgba(45,55,72,0.04)}
+    .item-image i{position:relative;z-index:1;font-size:2.6rem;opacity:0.9}
+    .item-image--ceramic i{color:var(--blue)}
+    .item-image--textile i{color:var(--red)}
+    .item-image--bag i{color:var(--blue-dark)}
+    .item-image--small i{color:var(--amber)}
+    .item-image--sets i{color:var(--green)}
+    .item-content{padding:18px;flex:1;display:flex;flex-direction:column}
+    .item-title{font-weight:600;font-size:1rem;line-height:1.3;margin-bottom:6px}
+    .item-desc{font-size:0.88rem;color:var(--gray);line-height:1.5;margin-bottom:12px}
+    .item-meta{margin-top:auto;font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray-light)}
+
+    /* STORY / WHY */
+    .story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .story-card{background:var(--white);border-radius:var(--radius-md);padding:32px 24px;box-shadow:var(--shadow-sm);border:1px solid rgba(45,55,72,0.04);transition:var(--transition)}
+    .story-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+    .story-card__num{font-size:0.8rem;font-weight:700;letter-spacing:0.08em;color:var(--red);margin-bottom:12px;display:block}
+    .story-card h3{font-size:1.1rem;font-weight:600;margin-bottom:10px}
+    .story-card p{font-size:0.92rem;color:var(--gray);line-height:1.6}
+    .story-card__icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px}
+    .story-card:nth-child(1) .story-card__icon{background:rgba(232,115,90,0.1);color:var(--red)}
+    .story-card:nth-child(2) .story-card__icon{background:rgba(91,142,201,0.1);color:var(--blue)}
+    .story-card:nth-child(3) .story-card__icon{background:rgba(229,168,61,0.1);color:var(--amber)}
+
+    /* PATHS */
+    .paths{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .path-card{padding:36px;border-radius:var(--radius);border:1px solid rgba(45,55,72,0.06);background:var(--white);box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+    .path-card--dark{background:linear-gradient(160deg, var(--blue-dark) 0%, #1E3A5F 100%);color:var(--white);border-color:rgba(255,255,255,0.08)}
+    .path-card__tag{display:inline-flex;padding:6px 14px;border-radius:100px;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:16px}
+    .path-card .path-card__tag{background:rgba(91,142,201,0.08);color:var(--blue-deep)}
+    .path-card--dark .path-card__tag{background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9)}
+    .path-card h3{font-size:1.45rem;font-weight:600;line-height:1.2;margin-bottom:12px}
+    .path-card p{font-size:0.92rem;color:var(--gray);line-height:1.65}
+    .path-card--dark p{color:rgba(255,255,255,0.7)}
+    .path-list{list-style:none;display:grid;gap:10px;margin:20px 0 28px;padding:0}
+    .path-list li{position:relative;padding-left:22px;font-size:0.92rem;line-height:1.6}
+    .path-list li::before{content:"";position:absolute;left:0;top:0.7em;width:7px;height:7px;border-radius:50%;background:var(--red)}
+    .path-card--dark .path-list li::before{background:var(--amber)}
+    .path-card .btn{margin-top:auto;align-self:flex-start}
+    .path-card__note{font-size:0.82rem;color:var(--gray-light);margin-top:14px}
+    .path-card--dark .path-card__note{color:rgba(255,255,255,0.55)}
+    .path-card--dark .path-card__note a{color:var(--amber-soft);text-decoration:underline;text-underline-offset:2px}
+
+    /* FORM SECTION */
+    .form-wrap{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(45,55,72,0.06)}
+    .form-wrap iframe{width:100%;height:740px;display:block;border:0}
+    .form-side{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+
+    /* FOOTER */
+    .footer{background:var(--dark);padding:40px 0}
+    .footer__inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+    .footer__logo-img{height:36px;width:auto;filter:brightness(0) invert(1);opacity:0.7}
+    .footer__links{display:flex;gap:20px;flex-wrap:wrap}
+    .footer__links a{font-size:0.88rem;color:rgba(255,255,255,0.5)}
+    .footer__links a:hover{color:var(--white)}
+    .footer__copy{font-size:0.82rem;color:rgba(255,255,255,0.3)}
+
+    /* responsive */
+    @media (max-width:1024px){
+      .showcase-body{grid-template-columns:1fr}
+      .hero__cards{display:none}
+      .hero__content{max-width:100%}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .story-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+      .paths{grid-template-columns:1fr}
+    }
+    @media (max-width:768px){
+      .container{padding:0 16px}
+      .header__inner{height:60px}
+      .header__logo-img{height:36px}
+      .header__nav{display:none}
+      .header__nav.active{display:flex;position:fixed;top:60px;left:0;right:0;bottom:0;height:auto;pointer-events:auto;background:#fff;flex-direction:column;padding:16px 0;align-items:stretch;justify-content:flex-start;overflow-y:auto}
+      .header__nav.active .header__nav-inner{flex-direction:column;gap:0;padding:0 16px}
+      .header__nav.active .header__nav-link{padding:16px 20px;border-bottom:1px solid rgba(45,55,72,0.06);border-radius:0;color:var(--dark)}
+      .header__burger{display:flex}
+      .hero{padding-top:0}
+      .hero__content{padding:100px 0 50px}
+      .hero__title{font-size:2.2rem}
+      .section{padding:40px 0}
+      .showcase{padding:20px}
+      .product-grid{grid-template-columns:1fr}
+      .footer__inner{flex-direction:column;text-align:center}
+    }
+    @media (max-width:480px){
+      .hero__cta{flex-direction:column}
+      .hero__cta .btn{width:100%}
+      .btn{width:100%}
+      .path-card .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="https://shkola-professii.ru" class="header__logo" aria-label="Школа профессий — на главную">
+        <img src="https://shkola-professii.ru/wp-content/themes/mytheme/img/logo_shkola-professii.svg" alt="Школа профессий" class="header__logo-img">
+      </a>
+      <div class="header__cta">
+        <a href="#zakaz" class="header__donate"><i class="ph ph-gift"></i> Заказать набор</a>
+        <button class="header__burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="header__nav" id="nav" aria-label="Навигация">
+    <div class="container header__nav-inner">
+      <a href="#showcase" class="header__nav-link">Витрина</a>
+      <a href="#market" class="header__nav-link">Магазин</a>
+      <a href="#meaning" class="header__nav-link">Зачем покупать</a>
+      <a href="#zakaz" class="header__nav-link">На заказ</a>
+      <a href="https://shkola-professii.ru/" class="header__nav-link">На главный сайт</a>
+      <a href="tel:+79166414683" class="header__nav-link" style="color:var(--blue-deep);font-weight:600"><i class="ph ph-phone"></i> +7 (916) 641-46-83</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO — как на /cvety: фото + градиент -->
+    <section class="hero" id="hero">
+      <div class="hero__bg">
+        <img src="https://shkola-professii.ru/wp-content/uploads/2026/03/raznye-zerna073-1024x683.jpg" alt="Мастерские Школы профессий" class="hero__img" loading="eager">
+        <div class="hero__overlay"></div>
+      </div>
+      <div class="container" style="position:relative;z-index:2;display:grid;grid-template-columns:1.15fr 0.85fr;gap:32px;align-items:center;width:100%">
+        <div class="hero__content">
+          <div class="hero__badge"><i class="ph ph-storefront"></i> Мастерские «Школы профессий»</div>
+          <h1 class="hero__title">Подарки, которые сделаны руками и имеют смысл</h1>
+          <p class="hero__subtitle">Керамика, текстиль, сумки, варенье, свечи и подарочные наборы — каждая вещь создана вручную в мастерских, где нейроотличные люди учатся профессии и получают работу.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="#market"><i class="ph ph-shopping-bag"></i> Смотреть готовые изделия</a>
+            <a class="btn btn--ghost btn--lg" href="#zakaz">Собрать набор</a>
+          </div>
+          <div class="hero__trust">
+            <img src="https://shkola-professii.ru/wp-content/themes/mytheme/img/logo_shkola-professii.svg" alt="" style="height:30px">
+            <span>Покупая, вы поддерживаете рабочие места</span>
+          </div>
+        </div>
+        <div class="hero__cards" aria-hidden="true">
+          <div class="hero__card">
+            <div class="hero__card-icon"><i class="ph ph-coffee"></i></div>
+            <div class="hero__card-title">Керамика</div>
+            <div class="hero__card-text">Чашки и тарелки с уникальной глазурью</div>
+          </div>
+          <div class="hero__card">
+            <div class="hero__card-icon"><i class="ph ph-handbag"></i></div>
+            <div class="hero__card-title">Текстиль и сумки</div>
+            <div class="hero__card-text">Шопперы, салфетки, пледы</div>
+          </div>
+          <div class="hero__card" style="grid-column:span 2;display:flex;gap:16px;align-items:center">
+            <div class="hero__card-icon" style="margin-bottom:0;flex-shrink:0"><i class="ph ph-gift"></i></div>
+            <div>
+              <div class="hero__card-title">Варенье и наборы</div>
+              <div class="hero__card-text">Фирменное варенье «Разных Зёрен» • готовые сочетания под любой бюджет</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWCASE -->
+    <section class="section section--cream" id="showcase">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Живая витрина</span>
+          <h2 class="section-title">Переключайтесь между мастерскими<br>и смотрите варианты прямо здесь</h2>
+          <p class="section-desc">Каждая вещь сделана вручную, поэтому немного отличается формой и оттенком — так и должно быть. Это не серийное производство, а личный подарок.</p>
+        </div>
+        <div class="showcase">
+          <div class="tabs" role="tablist" aria-label="Категории изделий">
+            <button class="tab" type="button" role="tab" aria-selected="true" data-category="ceramics"><i class="ph ph-coffee"></i> Керамика</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-category="textile"><i class="ph ph-t-shirt"></i> Текстиль</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-category="bags"><i class="ph ph-handbag"></i> Сумки</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-category="small"><i class="ph ph-candle"></i> Малые подарки</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-category="sets"><i class="ph ph-gift"></i> Наборы</button>
+          </div>
+          <div class="showcase-body">
+            <aside class="workshop-note">
+              <h3 id="categoryTitle">Керамическая мастерская</h3>
+              <p id="categoryText">Чашки, тарелки, блюда для сервировки. Каждая вещь немного отличается глазурью — покупка ощущается личной, а не серийной.</p>
+              <div class="badge-line" id="categoryBadges">
+                <span class="badge">Посуда</span><span class="badge">Глазурь</span><span class="badge">Подарок домой</span>
+              </div>
+              <a href="https://market.yandex.ru/business--raznye-zerna/212747076" target="_blank" rel="noopener" class="btn btn--dark" style="margin-top:20px;width:100%"><i class="ph ph-arrow-up-right"></i> Смотреть на Яндекс Маркете</a>
+              <p style="font-size:0.78rem;color:var(--gray-light);margin-top:10px;text-align:center">Наличие и цены — на Маркете</p>
+            </aside>
+            <div class="product-grid" id="productGrid" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEANING -->
+    <section class="section section--white" id="meaning">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Почему это важно</span>
+          <h2 class="section-title">Это не сувенирная лавка,<br>а продолжение учебных мастерских</h2>
+          <p class="section-desc">Вы выбираете красивую вещь ручной работы — и одновременно поддерживаете среду, где люди осваивают профессию.</p>
+        </div>
+        <div class="story-grid">
+          <article class="story-card">
+            <div class="story-card__icon"><i class="ph ph-hammer"></i></div>
+            <span class="story-card__num">01 — РЕАЛЬНАЯ РАБОТА</span>
+            <h3>Изделия из мастерских</h3>
+            <p>Участники осваивают процессы, материалы и ответственность за результат. Каждая вещь — итог обучения.</p>
+          </article>
+          <article class="story-card">
+            <div class="story-card__icon"><i class="ph ph-heart"></i></div>
+            <span class="story-card__num">02 — ПОНЯТНЫЙ ПОДАРОК</span>
+            <h3>Без лишних объяснений</h3>
+            <p>Не нужно глубоко разбираться в проекте — достаточно увидеть красивые вещи и понятные сценарии покупки.</p>
+          </article>
+          <article class="story-card">
+            <div class="story-card__icon"><i class="ph ph-package"></i></div>
+            <span class="story-card__num">03 — МОЖНО СОБРАТЬ НАБОР</span>
+            <h3>Под повод и бюджет</h3>
+            <p>Для команды, события или личного повода соберём подборку с учётом количества получателей и сроков.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PATHS -->
+    <section class="section section--cream" id="market">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Два пути</span>
+          <h2 class="section-title">Купить готовое или собрать под задачу</h2>
+        </div>
+        <div class="paths">
+          <article class="path-card">
+            <span class="path-card__tag">Готовые изделия</span>
+            <h3>Выбрать то, что уже есть в продаже</h3>
+            <p>Для быстрой покупки — страница на Яндекс Маркете. Здесь вы сначала понимаете, что именно продаётся и почему это не случайные товары.</p>
+            <ul class="path-list">
+              <li>подходит, если нужен подарок без долгого согласования;</li>
+              <li>видно наличие, карточки и условия доставки;</li>
+              <li>наш сайт — красивая витрина перед маркетплейсом.</li>
+            </ul>
+            <a class="btn btn--primary" href="https://market.yandex.ru/business--raznye-zerna/212747076" target="_blank" rel="noopener"><i class="ph ph-shopping-bag"></i> Перейти на Яндекс Маркет</a>
+            <p class="path-card__note">Магазин «Разные Зёрна» · также есть <a href="https://market.yandex.ru/business--otkrytaia-kukhnia/209729905" target="_blank" rel="noopener">«Открытая кухня» на Маркете</a></p>
+          </article>
+          <article class="path-card path-card--dark" id="order">
+            <span class="path-card__tag">Наборы на заказ</span>
+            <h3>Собрать подарок под повод, людей и бюджет</h3>
+            <p>Для корпоративных подарков, партнёрских наборов и личных праздников — подберём состав, учтём упаковку и сроки.</p>
+            <ul class="path-list">
+              <li>комбинируем изделия из разных мастерских;</li>
+              <li>учтём количество, бюджет, упаковку и сроки;</li>
+              <li>можно сделать набор теплее, строже или праздничнее.</li>
+            </ul>
+            <a class="btn btn--warm" href="#zakaz"><i class="ph ph-pencil-simple"></i> Заполнить форму заказа</a>
+            <p class="path-card__note">Или напишите на <a href="mailto:info@shkola-professii.ru">info@shkola-professii.ru</a> · Надежда Ворожкина: <a href="tel:+79166414683">+7 (916) 641-46-83</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="section section--white" id="zakaz">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Заявка на набор</span>
+          <h2 class="section-title">Заполните анкету — мы свяжемся и согласуем детали</h2>
+          <p class="section-desc">Ответим на почту или по телефону, обсудим состав, сроки и бюджет. При включённом VPN форма может отображаться некорректно.</p>
+        </div>
+        <div class="form-wrap">
+          <iframe src="https://forms.yandex.ru/u/69b0458c02848f104410db9a?iframe=1" title="Форма заказа набора" loading="lazy"></iframe>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px">
+          <a href="mailto:info@shkola-professii.ru" class="btn" style="background:var(--gray-bg)"><i class="ph ph-envelope"></i> info@shkola-professii.ru</a>
+          <a href="tel:+79166414683" class="btn" style="background:var(--gray-bg)"><i class="ph ph-phone"></i> +7 (916) 641-46-83</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL DARK CTA как на cvety -->
+    <section class="section section--dark">
+      <div class="container" style="position:relative;text-align:center">
+        <span class="section-tag section-tag--light">Как сделать заказ</span>
+        <h2 class="section-title section-title--light">Выберите готовое изделие<br>или соберите набор под свой повод</h2>
+        <p class="section-desc section-desc--light">Оба пути ведут в мастерские, где люди учатся профессии и получают работу.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px">
+          <a class="btn btn--primary" href="#showcase"><i class="ph ph-eye"></i> Вернуться к витрине</a>
+          <a class="btn btn--white" href="https://market.yandex.ru/business--raznye-zerna/212747076" target="_blank" rel="noopener"><i class="ph ph-shopping-bag"></i> Яндекс Маркет</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="https://shkola-professii.ru"><img src="https://shkola-professii.ru/cvety/img/logo-shkola-professii.svg" alt="Школа профессий" class="footer__logo-img"></a>
+      <div class="footer__links">
+        <a href="mailto:info@shkola-professii.ru">info@shkola-professii.ru</a>
+        <a href="tel:+79166414683">+7 (916) 641-46-83</a>
+        <a href="https://shkola-professii.ru/contacts/">Контакты</a>
+        <a href="https://shkola-professii.ru/privacy-policy/">Политика обработки персональных данных</a>
+      </div>
+      <span class="footer__copy">© 2018–2026 АНО «Школа профессий»</span>
+    </div>
+  </footer>
+
+  <script>
+    const catalog = {
+      ceramics: {
+        title: "Керамическая мастерская",
+        text: "Чашки, тарелки, небольшие блюда и предметы для сервировки. Каждая вещь немного отличается формой и глазурью — покупка ощущается не серийной, а личной.",
+        badges: ["Посуда", "Глазурь", "Подарок домой"],
+        icon: "ph-coffee",
+        items: [
+          ["Чашка с мягкой глазурью", "Для дома или офиса", "ceramic"],
+          ["Небольшая тарелка", "Сервировка и десерты", "ceramic"],
+          ["Блюдо ручной формы", "Для подарочного набора", "ceramic"]
+        ]
+      },
+      textile: {
+        title: "Текстиль и вязание",
+        text: "Мягкие вещи для тёплого личного подарка: салфетки, пледы, вязаные аксессуары и предметы для дома.",
+        badges: ["Теплый подарок", "Дом", "Мягкие фактуры"],
+        icon: "ph-t-shirt",
+        items: [
+          ["Вязаный шарф", "Сезонный подарок", "textile"],
+          ["Текстильные салфетки", "Для сервировки", "textile"],
+          ["Небольшой плед", "Для уютного набора", "textile"]
+        ]
+      },
+      bags: {
+        title: "Сумки и аксессуары",
+        text: "Практичные изделия на каждый день: шопперы, мешочки, косметички и упаковка, которую можно сразу включить в подарочный набор.",
+        badges: ["Шопперы", "Упаковка", "Практично"],
+        icon: "ph-handbag",
+        items: [
+          ["Текстильный шоппер", "Для ежедневных покупок", "bag"],
+          ["Мешочек для набора", "Упаковка без лишнего", "bag"],
+          ["Косметичка", "Небольшой личный подарок", "bag"]
+        ]
+      },
+      small: {
+        title: "Малые подарки",
+        text: "Варенье, свечи и небольшие изделия — помогают собрать недорогой, но законченный подарок. Удобно комбинировать с керамикой или текстилем.",
+        badges: ["Варенье", "Свечи", "Комплекты"],
+        icon: "ph-candle",
+        items: [
+          ["Фирменное варенье", "Узнаваемый продукт", "small"],
+          ["Свеча ручной работы", "Для теплого набора", "small"],
+          ["Открытка мастерской", "Дополнение к подарку", "small"]
+        ]
+      },
+      sets: {
+        title: "Подарочные наборы",
+        text: "Готовые сочетания из разных мастерских: керамика + варенье + текстиль + открытка. Такой формат лучше всего раскрывает идею магазина.",
+        badges: ["Корпоративно", "Лично", "Под бюджет"],
+        icon: "ph-gift",
+        items: [
+          ["Набор для партнера", "Строгий и тёплый", "sets"],
+          ["Праздничный набор", "Для команды или события", "sets"],
+          ["Домашний набор", "Керамика и сладкое", "sets"]
+        ]
+      }
+    };
+    const iconMap = {ceramic:"ph-coffee", textile:"ph-t-shirt", bag:"ph-handbag", small:"ph-candle", sets:"ph-gift"};
+    const tabs = document.querySelectorAll(".tab");
+    const title = document.getElementById("categoryTitle");
+    const text = document.getElementById("categoryText");
+    const badges = document.getElementById("categoryBadges");
+    const grid = document.getElementById("productGrid");
+    function renderCategory(cat){
+      const d = catalog[cat];
+      title.textContent = d.title;
+      text.textContent = d.text;
+      badges.innerHTML = d.badges.map(b=>`<span class="badge">${b}</span>`).join("");
+      grid.innerHTML = d.items.map(it=>`
+        <article class="item-card">
+          <div class="item-image item-image--${it[2]}" aria-hidden="true"><i class="ph ${iconMap[it[2]]}"></i></div>
+          <div class="item-content">
+            <p class="item-title">${it[0]}</p>
+            <p class="item-desc">${it[1]}</p>
+            <span class="item-meta">пример карточки</span>
+          </div>
+        </article>
+      `).join("");
+    }
+    tabs.forEach(tab=>{
+      tab.addEventListener("click",()=>{
+        tabs.forEach(t=>t.setAttribute("aria-selected","false"));
+        tab.setAttribute("aria-selected","true");
+        renderCategory(tab.dataset.category);
+      });
+    });
+    renderCategory("ceramics");
+
+    // burger like cvety
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav");
+    burger?.addEventListener("click",()=>{
+      burger.classList.toggle("active");
+      nav.classList.toggle("active");
+    });
+    nav?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
+      burger.classList.remove("active");
+      nav.classList.remove("active");
+    }));
+  </script>
+</body></html>
