@@ -509,13 +509,16 @@
       },
       textile: {
         title: "Текстиль и вязание",
-        text: "Мягкие вещи для тёплого личного подарка: салфетки, пледы, вязаные аксессуары и предметы для дома.",
+        text: "Мягкие вещи для тёплого личного подарка: пеналы, клатчи, шарфы, подставки и футболки — всё связано и сшито вручную.",
         badges: ["Теплый подарок", "Дом", "Мягкие фактуры"],
         icon: "ph-t-shirt",
         items: [
-          {title:"Вязаный шарф", desc:"Сезонный подарок", icon:"textile", meta:"Текстильная мастерская"},
-          {title:"Текстильные салфетки", desc:"Для сервировки", icon:"textile", meta:"Текстильная мастерская"},
-          {title:"Небольшой плед", desc:"Для уютного набора", icon:"textile", meta:"Текстильная мастерская"}
+          {title:"Пеналы", desc:"Вязаные пеналы для мелочей", img:"фото/пеналы.JPG", meta:"Текстильная мастерская"},
+          {title:"Шарф и шапка", desc:"Тёплый комплект ручной вязки", img:"фото/шарф_шапка.JPG", meta:"Текстильная мастерская"},
+          {title:"Вязаный клатч", desc:"Аксессуар ручной работы", img:"фото/вязаный клатч.JPG", meta:"Текстильная мастерская"},
+          {title:"Подставка под горячее", desc:"Для дома и сервировки", img:"фото/подставкаподгорячее.JPG", meta:"Текстильная мастерская"},
+          {title:"Сумка с пеналом", desc:"Комплект для повседневности", img:"фото/сумка с пеналом.JPG", meta:"Текстильная мастерская"},
+          {title:"Футболка", desc:"С принтом мастерской", img:"фото/футболка1.heic", meta:"Текстильная мастерская", fallback:"фото/футболка.png"}
         ]
       },
       bags: {
@@ -592,7 +595,13 @@
       showcaseItems = d.items;
       showcaseIdx = 0;
       grid.innerHTML = d.items.map((it,i)=> {
-        const imgPart = it.img ? `<img src="${it.img}" alt="${it.title} — ${it.meta}" loading="lazy">` : `<i class="ph ${iconMap[it.icon] || 'ph-image'}"></i>`;
+        let imgPart;
+        if(it.img){
+          const fb = it.fallback ? ` data-fallback="${it.fallback}" onerror="if(this.dataset.fallback&&this.src.indexOf(this.dataset.fallback)===-1){this.src=this.dataset.fallback}"` : "";
+          imgPart = `<img src="${it.img}" alt="${it.title} — ${it.meta}" loading="lazy"${fb}>`;
+        } else {
+          imgPart = `<i class="ph ${iconMap[it.icon] || 'ph-image'}"></i>`;
+        }
         const imgCls = it.img ? 'item-image' : `item-image item-image--placeholder item-image--${it.icon}`;
         return `
         <article class="item-card" data-idx="${i}" data-title="${it.title}" data-meta="${it.meta}" data-img="${it.img||''}">
@@ -641,14 +650,21 @@
       const it = showcaseItems[i];
       if(!it || !it.img) return;
       const lb = document.getElementById("lightbox");
-      document.getElementById("lightboxImg").src = it.img;
-      document.getElementById("lightboxImg").alt = it.title + " — " + it.meta;
+      const lbImgEl = document.getElementById("lightboxImg");
+      lbImgEl.src = it.img;
+      if(it.fallback){
+        lbImgEl.dataset.fallback = it.fallback;
+        lbImgEl.onerror = function(){ if(this.dataset.fallback && this.src.indexOf(this.dataset.fallback)===-1){ this.src=this.dataset.fallback; } };
+      } else {
+        lbImgEl.removeAttribute("data-fallback");
+        lbImgEl.onerror = null;
+      }
+      lbImgEl.alt = it.title + " — " + it.meta;
       document.getElementById("lightboxTitle").textContent = it.title;
       document.getElementById("lightboxMeta").textContent = it.meta + " · " + it.desc;
       lb.classList.add("active");
       lb.setAttribute("aria-hidden","false");
       document.body.style.overflow="hidden";
-      // remember showcase index for LB navigation
       lb.dataset.mode="showcase";
       lb.dataset.idx=i;
     }
