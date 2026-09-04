@@ -208,10 +208,28 @@
     .path-card--dark .path-card__note{color:rgba(255,255,255,0.55)}
     .path-card--dark .path-card__note a{color:var(--amber-soft);text-decoration:underline;text-underline-offset:2px}
 
-    /* FORM SECTION */
-    .form-wrap{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(45,55,72,0.06)}
-    .form-wrap iframe{width:100%;height:740px;display:block;border:0}
-    .form-side{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    /* ZAKAZ — контакты вместо iframe */
+    .zakaz-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto}
+    .zakaz-card{background:var(--white);border:1px solid rgba(45,55,72,0.06);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+    .zakaz-card__icon{width:48px;height:48px;border-radius:50%;background:rgba(91,142,201,0.10);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px}
+    .zakaz-card h3{font-size:1.2rem;font-weight:600;margin-bottom:8px}
+    .zakaz-card p{font-size:0.92rem;color:var(--gray);line-height:1.6;margin-bottom:14px}
+    .zakaz-contacts{display:grid;gap:10px;margin:8px 0 14px}
+    .zakaz-contact{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--gray-bg);border-radius:100px;font-weight:600;color:var(--dark);transition:var(--transition)}
+    .zakaz-contact:hover{background:var(--blue-dark);color:var(--white)}
+    .zakaz-contact i{font-size:1.15rem;color:var(--blue)}
+    .zakaz-contact:hover i{color:var(--white)}
+    .zakaz-note{font-size:0.78rem;color:var(--gray-light);line-height:1.5;margin-top:4px}
+    .zakaz-card--form{border-color:rgba(232,115,90,0.18);background:linear-gradient(180deg, var(--white) 0%, #FFF6F3 100%)}
+    @media (max-width:768px){ .zakaz-grid{grid-template-columns:1fr} }
+    /* LAVKA */
+    .lavka-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .lavka-card{border-radius:var(--radius-md);overflow:hidden;background:var(--white);box-shadow:var(--shadow-sm);border:1px solid rgba(45,55,72,0.06)}
+    .lavka-card img{width:100%;height:220px;object-fit:cover;display:block;transition:transform 0.5s ease}
+    .lavka-card:hover img{transform:scale(1.03)}
+    .lavka-card figcaption{padding:12px 14px;font-size:0.85rem;color:var(--gray);text-align:center;background:var(--white)}
+    @media (max-width:900px){ .lavka-grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:560px){ .lavka-grid{grid-template-columns:1fr} .lavka-card img{height:200px} }
 
     /* FOOTER */
     .footer{background:var(--dark);padding:40px 0}
@@ -266,7 +284,7 @@
         <img src="https://shkola-professii.ru/wp-content/themes/mytheme/img/logo_shkola-professii.svg" alt="Школа профессий" class="header__logo-img">
       </a>
       <div class="header__cta">
-        <a href="#zakaz" class="header__donate"><i class="ph ph-gift"></i> Заказать набор</a>
+        <a href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener" class="header__donate"><i class="ph ph-gift"></i> Заказать набор</a>
         <button class="header__burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -296,7 +314,7 @@
           <p class="hero__subtitle">Керамика, текстиль, сумки, варенье, свечи и подарочные наборы — каждая вещь создана вручную в мастерских, где нейроотличные люди учатся профессии и получают работу.</p>
           <div class="hero__cta">
             <a class="btn btn--primary btn--lg" href="#market"><i class="ph ph-shopping-bag"></i> Смотреть готовые изделия</a>
-            <a class="btn btn--ghost btn--lg" href="#zakaz">Собрать набор</a>
+            <a class="btn btn--ghost btn--lg" href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener"><i class="ph ph-pencil-simple"></i> Оставить заявку</a>
           </div>
           <div class="hero__trust">
             <img src="https://shkola-professii.ru/wp-content/themes/mytheme/img/logo_shkola-professii.svg" alt="" style="height:30px">
@@ -358,7 +376,7 @@
               </div>
               <div class="workshop-actions">
                 <a href="https://market.yandex.ru/business--raznye-zerna/212747076" target="_blank" rel="noopener" class="btn btn--dark" style="width:100%"><i class="ph ph-arrow-up-right"></i> Смотреть на Маркете</a>
-                <a href="#zakaz" class="btn btn--primary" style="width:100%"><i class="ph ph-pencil-simple"></i> Заказать напрямую</a>
+                <a href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener" class="btn btn--primary" style="width:100%"><i class="ph ph-pencil-simple"></i> Заказать напрямую</a>
               </div>
               <div class="order-hint" title="Сделаем похожее под вашу задачу — цвет, размер, тираж и сроки обсудим">
                 <i class="ph ph-lightbulb"></i>
@@ -436,40 +454,60 @@
               <li>учтём количество, бюджет, упаковку и сроки;</li>
               <li>можно сделать набор теплее, строже или праздничнее.</li>
             </ul>
-            <a class="btn btn--warm" href="#zakaz"><i class="ph ph-pencil-simple"></i> Заполнить форму заказа</a>
+            <a class="btn btn--warm" href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener"><i class="ph ph-pencil-simple"></i> Заполнить форму заказа</a>
             <p class="path-card__note">Или напишите на <a href="mailto:info@shkola-professii.ru">info@shkola-professii.ru</a> · Надежда Ворожкина: <a href="tel:+79166414683">+7 (916) 641-46-83</a></p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- FORM -->
+    <!-- CONTACT / ZAKAZ — без iframe, внешний Яндекс-форм -->
     <section class="section section--white" id="zakaz">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Заявка на набор</span>
-          <h2 class="section-title">Заполните анкету — мы свяжемся и согласуем детали</h2>
-          <p class="section-desc">Ответим на почту или по телефону, обсудим состав, сроки и бюджет. При включённом VPN форма может отображаться некорректно.</p>
+          <span class="section-tag">Связаться</span>
+          <h2 class="section-title">Понравилась вещь или её аналог?<br>Напишите — подскажем</h2>
+          <p class="section-desc">Идеальный путь: посмотрели фото → позвонили или оставили заявку по конкретной вещи. Мы покажем наличие, аналоги, рассчитаем тираж и сроки.</p>
         </div>
-        <div class="form-wrap">
-          <iframe src="https://forms.yandex.ru/u/69b0458c02848f104410db9a?iframe=1" title="Форма заказа набора" loading="lazy"></iframe>
-        </div>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px">
-          <a href="mailto:info@shkola-professii.ru" class="btn" style="background:var(--gray-bg)"><i class="ph ph-envelope"></i> info@shkola-professii.ru</a>
-          <a href="tel:+79166414683" class="btn" style="background:var(--gray-bg)"><i class="ph ph-phone"></i> +7 (916) 641-46-83</a>
+        <div class="zakaz-grid">
+          <div class="zakaz-card zakaz-card--contact">
+            <div class="zakaz-card__icon"><i class="ph ph-chats-circle"></i></div>
+            <h3>Свяжитесь напрямую</h3>
+            <p>Отвечает Надежда Ворожкина — координатор мастерских. Быстрее всего — звонок или почта.</p>
+            <div class="zakaz-contacts">
+              <a href="tel:+79166414683" class="zakaz-contact"><i class="ph ph-phone"></i> +7 (916) 641-46-83</a>
+              <a href="mailto:info@shkola-professii.ru" class="zakaz-contact"><i class="ph ph-envelope"></i> info@shkola-professii.ru</a>
+            </div>
+            <p class="zakaz-note">Можно прислать фото понравившейся вещи из витрины — подберём похожее.</p>
+          </div>
+          <div class="zakaz-card zakaz-card--form">
+            <div class="zakaz-card__icon" style="background:rgba(232,115,90,0.12);color:var(--red)"><i class="ph ph-pencil-simple"></i></div>
+            <h3>Оставить заявку</h3>
+            <p>Форма на Яндекс Формах — 2 минуты. Укажите что понравилось, количество и повод, мы перезвоним.</p>
+            <a href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener" class="btn btn--primary" style="width:100%;margin-top:8px"><i class="ph ph-arrow-up-right"></i> Заполнить форму на Яндекс Формах</a>
+            <p class="zakaz-note">Откроется в новой вкладке · без VPN работает стабильнее iframe</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- FINAL DARK CTA как на cvety -->
-    <section class="section section--dark">
-      <div class="container" style="position:relative;text-align:center">
-        <span class="section-tag section-tag--light">Как сделать заказ</span>
-        <h2 class="section-title section-title--light">Выберите готовое изделие<br>или соберите набор под свой повод</h2>
-        <p class="section-desc section-desc--light">Оба пути ведут в мастерские, где люди учатся профессии и получают работу.</p>
-        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px">
+    <!-- ЛАВКА В РАЗНЫХ ЗЁРНАХ -->
+    <section class="section section--cream" id="lavka">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Можно посмотреть вживую</span>
+          <h2 class="section-title">Уголок-лавка в «Разных зёрнах»</h2>
+          <p class="section-desc">В кафе «Разные зёрна» есть небольшой магазин — там уже выставлены многие изделия из витрины. Приходите, рассмотрите, потрогайте, выберите на месте. А если нужно много или «такое же, но...» — обсудим на месте или по заявке.</p>
+        </div>
+        <div class="lavka-grid">
+          <figure class="lavka-card"><img src="фото/РЗ1.jpg" alt="Лавка в Разных зёрнах" loading="lazy"><figcaption>Полочки с керамикой и текстилем</figcaption></figure>
+          <figure class="lavka-card"><img src="фото/РЗ2.jpg" alt="Изделия в Разных зёрнах" loading="lazy"><figcaption>Можно рассмотреть и потрогать</figcaption></figure>
+          <figure class="lavka-card"><img src="фото/РЗ3.jpg" alt="Уголок-лавка" loading="lazy"><figcaption>Готовые наборы и мелочи</figcaption></figure>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px">
           <a class="btn btn--primary" href="#showcase"><i class="ph ph-eye"></i> Вернуться к витрине</a>
-          <a class="btn btn--white" href="https://market.yandex.ru/business--raznye-zerna/212747076" target="_blank" rel="noopener"><i class="ph ph-shopping-bag"></i> Яндекс Маркет</a>
+          <a class="btn btn--dark" href="https://market.yandex.ru/business--raznye-zerna/212747076" target="_blank" rel="noopener"><i class="ph ph-shopping-bag"></i> Смотреть на Маркете</a>
+          <a class="btn" style="background:var(--white)" href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener"><i class="ph ph-pencil-simple"></i> Оставить заявку</a>
         </div>
       </div>
     </section>
