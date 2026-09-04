@@ -224,7 +224,7 @@
     @media (max-width:768px){ .zakaz-grid{grid-template-columns:1fr} }
     /* LAVKA */
     .lavka-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .lavka-card{border-radius:var(--radius-md);overflow:hidden;background:var(--white);box-shadow:var(--shadow-sm);border:1px solid rgba(45,55,72,0.06)}
+    .lavka-card{border-radius:var(--radius-md);overflow:hidden;background:var(--white);box-shadow:var(--shadow-sm);border:1px solid rgba(45,55,72,0.06);cursor:zoom-in}
     .lavka-card img{width:100%;height:220px;object-fit:cover;display:block;transition:transform 0.5s ease}
     .lavka-card:hover img{transform:scale(1.03)}
     .lavka-card figcaption{padding:12px 14px;font-size:0.85rem;color:var(--gray);text-align:center;background:var(--white)}
@@ -511,9 +511,9 @@
           <p class="section-desc">В кафе «Разные зёрна» есть небольшой магазин — там уже выставлены многие изделия из витрины. Приходите, рассмотрите, потрогайте, выберите на месте. А если нужно много или «такое же, но...» — обсудим на месте или по заявке.</p>
         </div>
         <div class="lavka-grid">
-          <figure class="lavka-card"><img src="фото/РЗ1.jpg" alt="Лавка в Разных зёрнах" loading="lazy"><figcaption>Полочки с керамикой и текстилем</figcaption></figure>
-          <figure class="lavka-card"><img src="фото/РЗ2.jpg" alt="Изделия в Разных зёрнах" loading="lazy"><figcaption>Можно рассмотреть и потрогать</figcaption></figure>
-          <figure class="lavka-card"><img src="фото/РЗ3.jpg" alt="Уголок-лавка" loading="lazy"><figcaption>Готовые наборы и мелочи</figcaption></figure>
+          <figure class="lavka-card" data-idx="0"><img src="фото/РЗ1.jpg" alt="Лавка в Разных зёрнах — полочки с изделиями" loading="lazy"></figure>
+          <figure class="lavka-card" data-idx="1"><img src="фото/РЗ2.jpg" alt="Изделия в Разных зёрнах — можно потрогать" loading="lazy"></figure>
+          <figure class="lavka-card" data-idx="2"><img src="фото/РЗ3.jpg" alt="Уголок-лавка в Разных зёрнах" loading="lazy"></figure>
         </div>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px">
           <a class="btn btn--primary" href="#showcase"><i class="ph ph-eye"></i> Вернуться к витрине</a>
@@ -736,6 +736,31 @@
       lb.dataset.idx=i;
     }
 
+    // LAVKA lightbox
+    const lavkaCards = Array.from(document.querySelectorAll('.lavka-card'));
+    const lavkaItems = lavkaCards.map(c => {
+      const img = c.querySelector('img');
+      return {src: img.src, alt: img.alt, title: 'Уголок-лавка в Разных зёрнах', meta: 'Можно посмотреть и потрогать вживую'};
+    });
+    function openLavkaLB(i){
+      const it = lavkaItems[i];
+      if(!it) return;
+      const lb = document.getElementById('lightbox');
+      const lbImgEl = document.getElementById('lightboxImg');
+      lbImgEl.src = it.src;
+      lbImgEl.alt = it.alt;
+      lbImgEl.removeAttribute('data-fallback');
+      lbImgEl.onerror = null;
+      document.getElementById('lightboxTitle').textContent = it.title;
+      document.getElementById('lightboxMeta').textContent = it.meta;
+      lb.classList.add('active');
+      lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+      lb.dataset.mode='lavka';
+      lb.dataset.idx=i;
+    }
+    lavkaCards.forEach((card,i)=> card.addEventListener('click',()=> openLavkaLB(i)));
+
     // burger like cvety
     const burger = document.getElementById("burger");
     const nav = document.getElementById("nav");
@@ -834,7 +859,7 @@
           if(e.key==="ArrowRight") document.getElementById("lightboxNext")?.click();
         });
       }
-      // unified prev/next that handles both hero and showcase modes
+      // unified prev/next that handles hero / showcase / lavka
       function bindLBNav(){
         const prev = document.getElementById("lightboxPrev");
         const next = document.getElementById("lightboxNext");
@@ -844,10 +869,13 @@
             if(lightbox.dataset.mode==="showcase"){
               let i=+lightbox.dataset.idx;
               i=(i-1+showcaseItems.length)%showcaseItems.length;
-              // skip placeholders without img
               let tries=showcaseItems.length;
               while(tries-- && !showcaseItems[i].img){ i=(i-1+showcaseItems.length)%showcaseItems.length; }
               openShowcaseLB(i);
+            } else if(lightbox.dataset.mode==="lavka"){
+              let i=+lightbox.dataset.idx;
+              i=(i-1+lavkaItems.length)%lavkaItems.length;
+              openLavkaLB(i);
             } else {
               idx=(idx-1+slides.length)%slides.length; openLB(idx);
             }
@@ -862,6 +890,10 @@
               let tries=showcaseItems.length;
               while(tries-- && !showcaseItems[i].img){ i=(i+1)%showcaseItems.length; }
               openShowcaseLB(i);
+            } else if(lightbox.dataset.mode==="lavka"){
+              let i=+lightbox.dataset.idx;
+              i=(i+1)%lavkaItems.length;
+              openLavkaLB(i);
             } else {
               idx=(idx+1)%slides.length; openLB(idx);
             }
