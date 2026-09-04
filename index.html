@@ -36,12 +36,12 @@
       --shadow-md: 0 8px 32px rgba(45,55,72,0.08);
       --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    *{margin:0;padding:0;box-sizing:border-box}
+    *{margin:0;padding:0;box-sizing:border-box;min-width:0}
     html{scroll-behavior:smooth;font-size:17px;overflow-x:clip}
     body{font-family:var(--font);color:var(--dark);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px;width:100%}
     :focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 
     /* HEADER like cvety */
@@ -87,7 +87,7 @@
     .hero__trust{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.75);font-size:0.88rem}
     .hero__trust img{height:28px;width:auto;filter:brightness(0) invert(1);opacity:0.85}
     /* HERO SLIDER — правая часть */
-    .hero__slider{position:relative;z-index:2;max-width:520px;margin-left:auto;width:100%;border-radius:var(--radius);overflow:hidden;background:var(--white);box-shadow:0 16px 48px rgba(0,0,0,0.18);aspect-ratio:4/3.2}
+    .hero__slider{position:relative;z-index:2;max-width:min(520px,100%);margin-left:auto;width:100%;border-radius:var(--radius);overflow:hidden;background:var(--white);box-shadow:0 16px 48px rgba(0,0,0,0.18);aspect-ratio:4/3.2;min-width:0}
     .hero__slider-track{display:flex;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);height:100%}
     .hero__slide{flex:0 0 100%;position:relative;cursor:zoom-in;overflow:hidden;background:var(--cream)}
     .hero__slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease}
@@ -137,8 +137,8 @@
     .tab{min-height:44px;padding:11px 18px;border:1px solid rgba(45,55,72,0.08);border-radius:100px;color:var(--dark-soft);background:var(--gray-bg);font:inherit;font-weight:600;font-size:0.9rem;cursor:pointer;transition:var(--transition)}
     .tab:hover{background:var(--white);border-color:rgba(91,142,201,0.2);transform:translateY(-1px)}
     .tab[aria-selected="true"]{color:var(--white);background:var(--blue-dark);border-color:var(--blue-dark);box-shadow:0 4px 16px rgba(44,82,130,0.25)}
-    .showcase-body{display:grid;grid-template-columns:0.38fr 1fr;gap:24px;align-items:start}
-    .workshop-note{padding:28px;background:var(--cream-warm);border-radius:var(--radius-md);border:1px solid rgba(229,168,61,0.12);position:sticky;top:88px}
+    .showcase-body{display:grid;grid-template-columns:0.38fr 1fr;gap:24px;align-items:start;width:100%;max-width:100%}
+    .workshop-note{padding:28px;background:var(--cream-warm);border-radius:var(--radius-md);border:1px solid rgba(229,168,61,0.12);position:sticky;top:88px;min-width:0;max-width:100%}
     .workshop-note h3{font-size:1.15rem;font-weight:600;margin-bottom:10px}
     .workshop-note p{font-size:0.92rem;color:var(--gray);line-height:1.65;margin-bottom:16px}
     .badge-line{display:flex;flex-wrap:wrap;gap:8px}
@@ -149,7 +149,7 @@
     .order-hint i{color:var(--blue);font-size:1rem;flex-shrink:0}
     .order-hint strong{color:var(--blue-dark);font-weight:700}
     /* showcase slider */
-    .showcase-slider{position:relative;overflow:hidden}
+    .showcase-slider{position:relative;overflow:hidden;width:100%;max-width:100%;min-width:0}
     .showcase-track{display:flex;gap:16px;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);will-change:transform}
     .showcase-track .item-card{flex:0 0 calc((100% - 32px)/3);min-width:0}
     .showcase-btn{position:absolute;top:42%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:var(--white);color:var(--dark);box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:var(--transition);z-index:2}
@@ -272,8 +272,19 @@
     @media (max-width:480px){
       .hero__cta{flex-direction:column}
       .hero__cta .btn{width:100%}
-      .btn{width:100%}
+      .btn{width:100%;white-space:normal;line-height:1.3}
       .path-card .btn{width:100%}
+      .workshop-actions .btn{font-size:0.84rem;padding:11px 14px}
+      .order-hint{white-space:normal;border-radius:14px;padding:10px 12px}
+      .hero__slider{aspect-ratio:4/3.4}
+      .zakaz-contact{font-size:0.88rem}
+    }
+    @media (max-width:380px){
+      .container{padding:0 12px}
+      .showcase{padding:12px}
+      .workshop-note{padding:20px}
+      .hero__title{font-size:1.9rem}
+      .btn{padding:12px 16px;font-size:0.88rem}
     }
   </style>
 </head>
