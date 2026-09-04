@@ -340,7 +340,7 @@
           <div class="tabs" role="tablist" aria-label="Категории изделий">
             <button class="tab" type="button" role="tab" aria-selected="true" data-category="ceramics"><i class="ph ph-coffee"></i> Керамика</button>
             <button class="tab" type="button" role="tab" aria-selected="false" data-category="textile"><i class="ph ph-t-shirt"></i> Текстиль</button>
-            <button class="tab" type="button" role="tab" aria-selected="false" data-category="small"><i class="ph ph-candle"></i> Малые подарки</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-category="small"><i class="ph ph-cookie"></i> Кондитерская</button>
             <button class="tab" type="button" role="tab" aria-selected="false" data-category="sets"><i class="ph ph-gift"></i> Наборы</button>
           </div>
           <div class="showcase-body">
@@ -521,14 +521,16 @@
         ]
       },
       small: {
-        title: "Малые подарки",
-        text: "Варенье, свечи и небольшие изделия — помогают собрать недорогой, но законченный подарок. Удобно комбинировать с керамикой или текстилем.",
-        badges: ["Варенье", "Свечи", "Комплекты"],
-        icon: "ph-candle",
+        title: "Кондитерская",
+        text: "Варенье, чай и конфеты ручной работы — фирменные сладости «Разных зёрен». Делают вручную, отлично собираются в наборы с керамикой.",
+        badges: ["Варенье", "Чай", "Конфеты"],
+        icon: "ph-cookie",
         items: [
-          {title:"Фирменное варенье", desc:"Узнаваемый продукт", icon:"small", meta:"Кондитерская"},
-          {title:"Свеча ручной работы", desc:"Для теплого набора", icon:"small", meta:"Мастерская свечей"},
-          {title:"Открытка мастерской", desc:"Дополнение к подарку", icon:"small", meta:"Типография"}
+          {title:"Конфеты ручной работы", desc:"Набор конфет, коробка", img:"фото/Конфеты(ручРабота)1.JPG", meta:"Кондитерская"},
+          {title:"Чай", desc:"Ароматный чай для набора", img:"фото/чай.JPG", meta:"Кондитерская"},
+          {title:"Варенье", desc:"Фирменное варенье, банка", img:"фото/варенье.JPG", meta:"Кондитерская"},
+          {title:"Варенье", desc:"Ещё один вкус", img:"фото/варенье2.JPG", meta:"Кондитерская"},
+          {title:"Конфеты ручной работы", desc:"Коробка конфет", img:"фото/Конфеты(ручРабота).jpg", meta:"Кондитерская"}
         ]
       },
       sets: {
@@ -543,7 +545,7 @@
         ]
       }
     };
-    const iconMap = {ceramic:"ph-coffee", textile:"ph-t-shirt", bag:"ph-handbag", small:"ph-candle", sets:"ph-gift"};
+    const iconMap = {ceramic:"ph-coffee", textile:"ph-t-shirt", bag:"ph-handbag", small:"ph-cookie", sets:"ph-gift"};
     const tabs = document.querySelectorAll(".tab");
     const title = document.getElementById("categoryTitle");
     const text = document.getElementById("categoryText");
