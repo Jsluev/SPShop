@@ -341,6 +341,7 @@
             <button class="tab" type="button" role="tab" aria-selected="true" data-category="ceramics"><i class="ph ph-coffee"></i> Керамика</button>
             <button class="tab" type="button" role="tab" aria-selected="false" data-category="textile"><i class="ph ph-t-shirt"></i> Текстиль</button>
             <button class="tab" type="button" role="tab" aria-selected="false" data-category="small"><i class="ph ph-cookie"></i> Кондитерская</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-category="gifts"><i class="ph ph-star"></i> Малые подарки</button>
             <button class="tab" type="button" role="tab" aria-selected="false" data-category="sets"><i class="ph ph-gift"></i> Наборы</button>
           </div>
           <div class="showcase-body">
@@ -533,6 +534,19 @@
           {title:"Конфеты ручной работы", desc:"Коробка конфет", img:"фото/Конфеты(ручРабота).jpg", meta:"Кондитерская"}
         ]
       },
+      gifts: {
+        title: "Малые подарки",
+        text: "Небольшие, но тёплые вещи — брелки, свечи, подсвечники и пальчиковые куклы. Отлично дополнят любой набор.",
+        badges: ["Брелки", "Свечи", "Сувениры"],
+        icon: "ph-star",
+        items: [
+          {title:"Вязаные брелки", desc:"Вязаные брелки ручной работы", img:"фото/вязаныемелочи.jpg", meta:"Малые подарки"},
+          {title:"Вязаный клатч", desc:"Аксессуар ручной работы", img:"фото/вязаный клатч.JPG", meta:"Малые подарки"},
+          {title:"Подсвечник", desc:"Керамический подсвечник", img:"фото/Керамика2.jpg", meta:"Малые подарки"},
+          {title:"Свечи", desc:"Свечи ручной работы", img:"фото/Свечи.JPG", meta:"Малые подарки"},
+          {title:"Пальчиковые куклы", desc:"Вязаные пальчиковые куклы", img:"фото/вязаныемелочи1.jpg", meta:"Малые подарки"}
+        ]
+      },
       sets: {
         title: "Подарочные наборы",
         text: "Готовые сочетания из разных мастерских: керамика + варенье + текстиль + открытка. Подберём под повод, бюджет и количество получателей.",
@@ -548,7 +562,7 @@
         ]
       }
     };
-    const iconMap = {ceramic:"ph-coffee", textile:"ph-t-shirt", bag:"ph-handbag", small:"ph-cookie", sets:"ph-gift"};
+    const iconMap = {ceramic:"ph-coffee", textile:"ph-t-shirt", bag:"ph-handbag", small:"ph-cookie", gifts:"ph-star", sets:"ph-gift"};
     const tabs = document.querySelectorAll(".tab");
     const title = document.getElementById("categoryTitle");
     const text = document.getElementById("categoryText");
