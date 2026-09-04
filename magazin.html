@@ -86,14 +86,36 @@
     .hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
     .hero__trust{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.75);font-size:0.88rem}
     .hero__trust img{height:28px;width:auto;filter:brightness(0) invert(1);opacity:0.85}
-    .hero__cards{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:520px;margin-left:auto}
-    .hero__card{background:rgba(255,255,255,0.96);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-md)}
-    .hero__card-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:12px}
-    .hero__card:nth-child(1) .hero__card-icon{background:rgba(232,115,90,0.1);color:var(--red)}
-    .hero__card:nth-child(2) .hero__card-icon{background:rgba(91,142,201,0.1);color:var(--blue)}
-    .hero__card:nth-child(3) .hero__card-icon{background:rgba(229,168,61,0.12);color:#B78200}
-    .hero__card-title{font-weight:600;font-size:0.95rem;margin-bottom:4px}
-    .hero__card-text{font-size:0.85rem;color:var(--gray);line-height:1.5}
+    /* HERO SLIDER — правая часть */
+    .hero__slider{position:relative;z-index:2;max-width:520px;margin-left:auto;width:100%;border-radius:var(--radius);overflow:hidden;background:var(--white);box-shadow:0 16px 48px rgba(0,0,0,0.18);aspect-ratio:4/3.2}
+    .hero__slider-track{display:flex;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);height:100%}
+    .hero__slide{flex:0 0 100%;position:relative;cursor:zoom-in;overflow:hidden;background:var(--cream)}
+    .hero__slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease}
+    .hero__slide:hover img{transform:scale(1.03)}
+    .hero__slide figcaption{position:absolute;left:12px;right:12px;bottom:12px;padding:14px 16px;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);border-radius:var(--radius-sm);box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+    .hero__slide-title{font-weight:600;font-size:0.95rem;color:var(--dark);line-height:1.3}
+    .hero__slide-meta{font-size:0.82rem;color:var(--gray);margin-top:2px}
+    .hero__slider-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,0.92);color:var(--dark);box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:var(--transition);z-index:3}
+    .hero__slider-btn:hover{background:var(--white);transform:translateY(-50%) scale(1.05)}
+    .hero__slider-btn--prev{left:12px}
+    .hero__slider-btn--next{right:12px}
+    .hero__slider-dots{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3}
+    .hero__slider-dot{width:8px;height:8px;border-radius:50%;border:2px solid rgba(255,255,255,0.9);background:transparent;cursor:pointer;transition:var(--transition);padding:0}
+    .hero__slider-dot.active{background:var(--white);border-color:var(--white)}
+    /* LIGHTBOX */
+    .lightbox{position:fixed;inset:0;z-index:2000;background:rgba(15,23,42,0.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:var(--transition);padding:24px}
+    .lightbox.active{opacity:1;visibility:visible}
+    .lightbox__close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,0.12);color:var(--white);font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+    .lightbox__close:hover{background:rgba(255,255,255,0.22)}
+    .lightbox__nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:none;background:rgba(255,255,255,0.12);color:var(--white);font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+    .lightbox__nav:hover{background:rgba(255,255,255,0.22)}
+    .lightbox__prev{left:20px}
+    .lightbox__next{right:20px}
+    .lightbox__content{max-width:min(900px,90vw);width:100%;display:flex;flex-direction:column;align-items:center;gap:16px}
+    .lightbox__img{max-width:100%;max-height:72vh;object-fit:contain;border-radius:var(--radius-sm);box-shadow:0 16px 48px rgba(0,0,0,0.4);background:var(--white)}
+    .lightbox__cap{padding:14px 18px;background:var(--white);border-radius:var(--radius-sm);text-align:center;max-width:560px;width:100%}
+    .lightbox__cap-title{font-weight:600;color:var(--dark)}
+    .lightbox__cap-meta{font-size:0.88rem;color:var(--gray);margin-top:4px}
 
     /* SECTIONS */
     .section{padding:60px 0}
@@ -185,7 +207,8 @@
     /* responsive */
     @media (max-width:1024px){
       .showcase-body{grid-template-columns:1fr}
-      .hero__cards{display:none}
+      .hero .container{grid-template-columns:1fr !important}
+      .hero__slider{max-width:560px;margin:0 auto}
       .hero__content{max-width:100%}
       .product-grid{grid-template-columns:repeat(2,1fr)}
       .story-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
@@ -260,24 +283,32 @@
             <span>Покупая, вы поддерживаете рабочие места</span>
           </div>
         </div>
-        <div class="hero__cards" aria-hidden="true">
-          <div class="hero__card">
-            <div class="hero__card-icon"><i class="ph ph-coffee"></i></div>
-            <div class="hero__card-title">Керамика</div>
-            <div class="hero__card-text">Чашки и тарелки с уникальной глазурью</div>
+        <div class="hero__slider" id="heroSlider" aria-label="Изделия мастерских — слайдер">
+          <div class="hero__slider-track" id="heroSliderTrack">
+            <figure class="hero__slide" data-index="0" data-title="Уютные кружки" data-meta="Керамическая мастерская">
+              <img src="фото/керамика1.jpg" alt="Уютные кружки от керамической мастерской" loading="eager">
+              <figcaption><div class="hero__slide-title">Уютные кружки</div><div class="hero__slide-meta">Керамическая мастерская</div></figcaption>
+            </figure>
+            <figure class="hero__slide" data-index="1" data-title="Набор конфет ручной работы" data-meta="Для «Разных зёрен»">
+              <img src="фото/конфеты1.JPG" alt="Набор конфет ручной работы для разных зерен" loading="lazy">
+              <figcaption><div class="hero__slide-title">Набор конфет ручной работы</div><div class="hero__slide-meta">Для «Разных зёрен»</div></figcaption>
+            </figure>
+            <figure class="hero__slide" data-index="2" data-title="Пеналы" data-meta="Швейная мастерская">
+              <img src="фото/пеналы.JPG" alt="Пеналы от швейной мастерской" loading="lazy">
+              <figcaption><div class="hero__slide-title">Пеналы</div><div class="hero__slide-meta">Швейная мастерская</div></figcaption>
+            </figure>
+            <figure class="hero__slide" data-index="3" data-title="Варенье" data-meta="Наша кондитерская">
+              <img src="фото/варенье.JPG" alt="Варенье от нашей кондитерской" loading="lazy">
+              <figcaption><div class="hero__slide-title">Варенье</div><div class="hero__slide-meta">Наша кондитерская</div></figcaption>
+            </figure>
+            <figure class="hero__slide" data-index="4" data-title="Набор посуды" data-meta="Керамическая мастерская">
+              <img src="фото/Керамика.jpg" alt="Набор посуды от керамической мастерской" loading="lazy">
+              <figcaption><div class="hero__slide-title">Набор посуды</div><div class="hero__slide-meta">Керамическая мастерская</div></figcaption>
+            </figure>
           </div>
-          <div class="hero__card">
-            <div class="hero__card-icon"><i class="ph ph-handbag"></i></div>
-            <div class="hero__card-title">Текстиль и сумки</div>
-            <div class="hero__card-text">Шопперы, салфетки, пледы</div>
-          </div>
-          <div class="hero__card" style="grid-column:span 2;display:flex;gap:16px;align-items:center">
-            <div class="hero__card-icon" style="margin-bottom:0;flex-shrink:0"><i class="ph ph-gift"></i></div>
-            <div>
-              <div class="hero__card-title">Варенье и наборы</div>
-              <div class="hero__card-text">Фирменное варенье «Разных Зёрен» • готовые сочетания под любой бюджет</div>
-            </div>
-          </div>
+          <button class="hero__slider-btn hero__slider-btn--prev" id="heroPrev" aria-label="Назад"><i class="ph ph-caret-left"></i></button>
+          <button class="hero__slider-btn hero__slider-btn--next" id="heroNext" aria-label="Вперед"><i class="ph ph-caret-right"></i></button>
+          <div class="hero__slider-dots" id="heroSliderDots" role="tablist" aria-label="Слайды"></div>
         </div>
       </div>
     </section>
@@ -426,6 +457,20 @@
     </div>
   </footer>
 
+  <!-- LIGHTBOX for hero slider -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Просмотр изделия">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Закрыть"><i class="ph ph-x"></i></button>
+    <button class="lightbox__nav lightbox__prev" id="lightboxPrev" aria-label="Назад"><i class="ph ph-caret-left"></i></button>
+    <button class="lightbox__nav lightbox__next" id="lightboxNext" aria-label="Вперед"><i class="ph ph-caret-right"></i></button>
+    <div class="lightbox__content">
+      <img class="lightbox__img" id="lightboxImg" alt="">
+      <div class="lightbox__cap">
+        <div class="lightbox__cap-title" id="lightboxTitle"></div>
+        <div class="lightbox__cap-meta" id="lightboxMeta"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const catalog = {
       ceramics: {
@@ -526,5 +571,91 @@
       burger.classList.remove("active");
       nav.classList.remove("active");
     }));
+
+    // HERO SLIDER + LIGHTBOX
+    (function(){
+      const track = document.getElementById("heroSliderTrack");
+      const slides = track ? Array.from(track.children) : [];
+      const prevBtn = document.getElementById("heroPrev");
+      const nextBtn = document.getElementById("heroNext");
+      const dotsWrap = document.getElementById("heroSliderDots");
+      const lightbox = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lightboxImg");
+      const lbTitle = document.getElementById("lightboxTitle");
+      const lbMeta = document.getElementById("lightboxMeta");
+      if(!track || !slides.length) return;
+      let idx = 0;
+      let autoTimer = null;
+
+      function buildDots(){
+        dotsWrap.innerHTML = slides.map((_,i)=>`<button class="hero__slider-dot${i===0?' active':''}" data-i="${i}" aria-label="Слайд ${i+1}" role="tab" aria-selected="${i===0?'true':'false'}"></button>`).join("");
+        dotsWrap.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>goTo(+b.dataset.i, true)));
+      }
+      function update(){
+        track.style.transform = `translateX(${-idx*100}%)`;
+        dotsWrap.querySelectorAll(".hero__slider-dot").forEach((d,i)=>{
+          d.classList.toggle("active", i===idx);
+          d.setAttribute("aria-selected", i===idx ? "true":"false");
+        });
+      }
+      function goTo(i, user=false){
+        idx = (i+slides.length)%slides.length;
+        update();
+        if(user) restartAuto();
+      }
+      function next(){ goTo(idx+1); }
+      function prev(){ goTo(idx-1); }
+      function restartAuto(){
+        if(autoTimer) clearInterval(autoTimer);
+        autoTimer = setInterval(next, 4500);
+      }
+
+      prevBtn?.addEventListener("click", ()=>{ prev(); restartAuto(); });
+      nextBtn?.addEventListener("click", ()=>{ next(); restartAuto(); });
+
+      // swipe
+      let sx=0, dx=0;
+      track.addEventListener("touchstart", e=>{ sx=e.touches[0].clientX; if(autoTimer) clearInterval(autoTimer); }, {passive:true});
+      track.addEventListener("touchmove", e=>{ dx=e.touches[0].clientX - sx; }, {passive:true});
+      track.addEventListener("touchend", ()=>{
+        if(Math.abs(dx)>40){ dx<0 ? next() : prev(); }
+        dx=0; restartAuto();
+      });
+
+      // open lightbox on slide click
+      function openLB(i){
+        idx=i;
+        const s=slides[idx];
+        lbImg.src = s.querySelector("img").src;
+        lbImg.alt = s.querySelector("img").alt;
+        lbTitle.textContent = s.dataset.title;
+        lbMeta.textContent = s.dataset.meta;
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden","false");
+        document.body.style.overflow="hidden";
+        if(autoTimer) clearInterval(autoTimer);
+      }
+      function closeLB(){
+        lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden","true");
+        document.body.style.overflow="";
+        restartAuto();
+      }
+      slides.forEach((s,i)=> s.addEventListener("click", ()=> openLB(i)) );
+      document.getElementById("lightboxClose")?.addEventListener("click", closeLB);
+      document.getElementById("lightboxPrev")?.addEventListener("click", ()=>{ idx=(idx-1+slides.length)%slides.length; openLB(idx); });
+      document.getElementById("lightboxNext")?.addEventListener("click", ()=>{ idx=(idx+1)%slides.length; openLB(idx); });
+      lightbox?.addEventListener("click", e=>{ if(e.target===lightbox) closeLB(); });
+      document.addEventListener("keydown", e=>{
+        if(!lightbox.classList.contains("active")) return;
+        if(e.key==="Escape") closeLB();
+        if(e.key==="ArrowLeft") document.getElementById("lightboxPrev")?.click();
+        if(e.key==="ArrowRight") document.getElementById("lightboxNext")?.click();
+      });
+
+      buildDots();
+      update();
+      restartAuto();
+    })();
   </script>
 </body></html>
