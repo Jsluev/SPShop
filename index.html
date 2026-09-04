@@ -46,10 +46,12 @@
 
     /* HEADER like cvety */
     .header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.88);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(45,55,72,0.05)}
-    .header__inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .header__inner{display:flex;align-items:center;justify-content:space-between;height:72px;position:relative}
+    .header__logo{position:relative;z-index:1002;pointer-events:auto}
     .header__logo-img{height:44px;width:auto}
     .header__nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:center;align-items:center;height:72px;z-index:1001;pointer-events:none}
     .header__nav-inner{display:flex;gap:4px;justify-content:center;pointer-events:auto}
+    .header__cta{position:relative;z-index:1002;pointer-events:auto}
     .header__nav-link{padding:8px 16px;font-size:0.88rem;font-weight:500;color:var(--dark-soft);border-radius:100px;transition:var(--transition)}
     .header__nav-link:hover{color:var(--blue-deep);background:rgba(91,142,201,0.08)}
     .header__cta{display:flex;align-items:center;gap:12px}
@@ -301,7 +303,7 @@
     </div>
   </header>
   <nav class="header__nav" id="nav" aria-label="Навигация">
-    <div class="container header__nav-inner">
+    <div class="header__nav-inner">
       <a href="#showcase" class="header__nav-link">Витрина</a>
       <a href="#market" class="header__nav-link">Магазин</a>
       <a href="#meaning" class="header__nav-link">Зачем покупать</a>
