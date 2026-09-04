@@ -137,27 +137,40 @@
     .tab{min-height:44px;padding:11px 18px;border:1px solid rgba(45,55,72,0.08);border-radius:100px;color:var(--dark-soft);background:var(--gray-bg);font:inherit;font-weight:600;font-size:0.9rem;cursor:pointer;transition:var(--transition)}
     .tab:hover{background:var(--white);border-color:rgba(91,142,201,0.2);transform:translateY(-1px)}
     .tab[aria-selected="true"]{color:var(--white);background:var(--blue-dark);border-color:var(--blue-dark);box-shadow:0 4px 16px rgba(44,82,130,0.25)}
-    .showcase-body{display:grid;grid-template-columns:0.42fr 1fr;gap:24px}
-    .workshop-note{padding:28px;background:var(--cream-warm);border-radius:var(--radius-md);border:1px solid rgba(229,168,61,0.12)}
+    .showcase-body{display:grid;grid-template-columns:0.38fr 1fr;gap:24px;align-items:start}
+    .workshop-note{padding:28px;background:var(--cream-warm);border-radius:var(--radius-md);border:1px solid rgba(229,168,61,0.12);position:sticky;top:88px}
     .workshop-note h3{font-size:1.15rem;font-weight:600;margin-bottom:10px}
     .workshop-note p{font-size:0.92rem;color:var(--gray);line-height:1.65;margin-bottom:16px}
     .badge-line{display:flex;flex-wrap:wrap;gap:8px}
     .badge{padding:6px 12px;border-radius:100px;background:var(--white);color:var(--blue-deep);font-size:0.78rem;font-weight:600;box-shadow:var(--shadow-sm)}
-    .product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .item-card{display:flex;flex-direction:column;background:var(--white);border:1px solid rgba(45,55,72,0.06);border-radius:var(--radius-md);overflow:hidden;transition:var(--transition)}
-    .item-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:rgba(91,142,201,0.15)}
-    .item-image{position:relative;min-height:180px;background:var(--cream);overflow:hidden;display:flex;align-items:center;justify-content:center}
-    .item-image::before{content:"";position:absolute;inset:22px;border-radius:var(--radius-sm);background:linear-gradient(145deg, #fff, rgba(91,142,201,0.12));box-shadow:inset -14px -18px 0 rgba(45,55,72,0.04)}
-    .item-image i{position:relative;z-index:1;font-size:2.6rem;opacity:0.9}
+    /* showcase slider */
+    .showcase-slider{position:relative;overflow:hidden}
+    .showcase-track{display:flex;gap:16px;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);will-change:transform}
+    .showcase-track .item-card{flex:0 0 calc((100% - 32px)/3);min-width:0}
+    .showcase-btn{position:absolute;top:42%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:var(--white);color:var(--dark);box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:var(--transition);z-index:2}
+    .showcase-btn:hover{background:var(--blue-dark);color:var(--white)}
+    .showcase-btn:disabled{opacity:0.35;pointer-events:none}
+    .showcase-btn--prev{left:4px}
+    .showcase-btn--next{right:4px}
+    .showcase-dots{display:flex;gap:6px;justify-content:center;margin-top:14px}
+    .showcase-dot{width:8px;height:8px;border-radius:50%;border:none;background:rgba(45,55,72,0.15);cursor:pointer;transition:var(--transition);padding:0}
+    .showcase-dot.active{background:var(--blue-dark)}
+    .item-card{display:flex;flex-direction:column;background:var(--white);border:1px solid rgba(45,55,72,0.06);border-radius:var(--radius-md);overflow:hidden;transition:var(--transition);cursor:zoom-in}
+    .item-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:rgba(91,142,201,0.15)}
+    .item-image{position:relative;min-height:200px;background:var(--cream);overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .item-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
+    .item-card:hover .item-image img{transform:scale(1.04)}
+    .item-image--placeholder::before{content:"";position:absolute;inset:22px;border-radius:var(--radius-sm);background:linear-gradient(145deg, #fff, rgba(91,142,201,0.12));box-shadow:inset -14px -18px 0 rgba(45,55,72,0.04)}
+    .item-image--placeholder i{position:relative;z-index:1;font-size:2.6rem;opacity:0.9}
     .item-image--ceramic i{color:var(--blue)}
     .item-image--textile i{color:var(--red)}
     .item-image--bag i{color:var(--blue-dark)}
     .item-image--small i{color:var(--amber)}
     .item-image--sets i{color:var(--green)}
-    .item-content{padding:18px;flex:1;display:flex;flex-direction:column}
-    .item-title{font-weight:600;font-size:1rem;line-height:1.3;margin-bottom:6px}
-    .item-desc{font-size:0.88rem;color:var(--gray);line-height:1.5;margin-bottom:12px}
-    .item-meta{margin-top:auto;font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray-light)}
+    .item-content{padding:16px;flex:1;display:flex;flex-direction:column}
+    .item-title{font-weight:600;font-size:0.95rem;line-height:1.3;margin-bottom:4px}
+    .item-desc{font-size:0.84rem;color:var(--gray);line-height:1.5;margin-bottom:10px}
+    .item-meta{margin-top:auto;font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray-light)}
 
     /* STORY / WHY */
     .story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -210,9 +223,11 @@
       .hero .container{grid-template-columns:1fr !important}
       .hero__slider{max-width:560px;margin:0 auto}
       .hero__content{max-width:100%}
-      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .showcase-track .item-card{flex:0 0 calc((100% - 16px)/2)}
       .story-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
       .paths{grid-template-columns:1fr}
+      .showcase-body{grid-template-columns:1fr}
+      .workshop-note{position:static}
     }
     @media (max-width:768px){
       .container{padding:0 16px}
@@ -227,8 +242,8 @@
       .hero__content{padding:100px 0 50px}
       .hero__title{font-size:2.2rem}
       .section{padding:40px 0}
-      .showcase{padding:20px}
-      .product-grid{grid-template-columns:1fr}
+      .showcase{padding:16px}
+      .showcase-track .item-card{flex:0 0 100%}
       .footer__inner{flex-direction:column;text-align:center}
     }
     @media (max-width:480px){
@@ -339,8 +354,13 @@
               <a href="https://market.yandex.ru/business--raznye-zerna/212747076" target="_blank" rel="noopener" class="btn btn--dark" style="margin-top:20px;width:100%"><i class="ph ph-arrow-up-right"></i> Смотреть на Яндекс Маркете</a>
               <p style="font-size:0.78rem;color:var(--gray-light);margin-top:10px;text-align:center">Наличие и цены — на Маркете</p>
             </aside>
-            <div class="product-grid" id="productGrid" aria-live="polite"></div>
+            <div class="showcase-slider" aria-live="polite">
+              <div class="showcase-track" id="productGrid"></div>
+              <button class="showcase-btn showcase-btn--prev" id="showcasePrev" aria-label="Назад"><i class="ph ph-caret-left"></i></button>
+              <button class="showcase-btn showcase-btn--next" id="showcaseNext" aria-label="Вперед"><i class="ph ph-caret-right"></i></button>
+            </div>
           </div>
+          <div class="showcase-dots" id="showcaseDots" role="tablist" aria-label="Страницы слайдера"></div>
         </div>
       </div>
     </section>
@@ -475,13 +495,16 @@
     const catalog = {
       ceramics: {
         title: "Керамическая мастерская",
-        text: "Чашки, тарелки, небольшие блюда и предметы для сервировки. Каждая вещь немного отличается формой и глазурью — покупка ощущается не серийной, а личной.",
+        text: "Чашки, тарелки, кашпо и небольшие блюда — каждая вещь с уникальной глазурью, немного отличается формой. Сделано вручную, не серийно.",
         badges: ["Посуда", "Глазурь", "Подарок домой"],
         icon: "ph-coffee",
         items: [
-          ["Чашка с мягкой глазурью", "Для дома или офиса", "ceramic"],
-          ["Небольшая тарелка", "Сервировка и десерты", "ceramic"],
-          ["Блюдо ручной формы", "Для подарочного набора", "ceramic"]
+          {title:"Набор тарелок", desc:"Ручная лепка, набор из 2–3 шт.", img:"фото/наборТарелки.JPG", meta:"Керамическая мастерская"},
+          {title:"Кашпо", desc:"Для дома и растений", img:"фото/Кашпо.JPG", meta:"Керамическая мастерская"},
+          {title:"Набор посуды", desc:"Чашки и миски с мягкой глазурью", img:"фото/Керамика.jpg", meta:"Керамическая мастерская"},
+          {title:"Керамика с глазурью", desc:"Небольшие блюда и пиалы", img:"фото/Керамика2.jpg", meta:"Керамическая мастерская"},
+          {title:"Керамика — светлая глазурь", desc:"Уютные формы для дома", img:"фото/Керамика4.jpg", meta:"Керамическая мастерская"},
+          {title:"Кружки", desc:"Уютные кружки ручной работы", img:"фото/кружки.JPG", meta:"Керамическая мастерская"}
         ]
       },
       textile: {
@@ -490,9 +513,9 @@
         badges: ["Теплый подарок", "Дом", "Мягкие фактуры"],
         icon: "ph-t-shirt",
         items: [
-          ["Вязаный шарф", "Сезонный подарок", "textile"],
-          ["Текстильные салфетки", "Для сервировки", "textile"],
-          ["Небольшой плед", "Для уютного набора", "textile"]
+          {title:"Вязаный шарф", desc:"Сезонный подарок", icon:"textile", meta:"Текстильная мастерская"},
+          {title:"Текстильные салфетки", desc:"Для сервировки", icon:"textile", meta:"Текстильная мастерская"},
+          {title:"Небольшой плед", desc:"Для уютного набора", icon:"textile", meta:"Текстильная мастерская"}
         ]
       },
       bags: {
@@ -501,9 +524,9 @@
         badges: ["Шопперы", "Упаковка", "Практично"],
         icon: "ph-handbag",
         items: [
-          ["Текстильный шоппер", "Для ежедневных покупок", "bag"],
-          ["Мешочек для набора", "Упаковка без лишнего", "bag"],
-          ["Косметичка", "Небольшой личный подарок", "bag"]
+          {title:"Текстильный шоппер", desc:"Для ежедневных покупок", icon:"bag", meta:"Швейная мастерская"},
+          {title:"Мешочек для набора", desc:"Упаковка без лишнего", icon:"bag", meta:"Швейная мастерская"},
+          {title:"Косметичка", desc:"Небольшой личный подарок", icon:"bag", meta:"Швейная мастерская"}
         ]
       },
       small: {
@@ -512,9 +535,9 @@
         badges: ["Варенье", "Свечи", "Комплекты"],
         icon: "ph-candle",
         items: [
-          ["Фирменное варенье", "Узнаваемый продукт", "small"],
-          ["Свеча ручной работы", "Для теплого набора", "small"],
-          ["Открытка мастерской", "Дополнение к подарку", "small"]
+          {title:"Фирменное варенье", desc:"Узнаваемый продукт", icon:"small", meta:"Кондитерская"},
+          {title:"Свеча ручной работы", desc:"Для теплого набора", icon:"small", meta:"Мастерская свечей"},
+          {title:"Открытка мастерской", desc:"Дополнение к подарку", icon:"small", meta:"Типография"}
         ]
       },
       sets: {
@@ -523,9 +546,9 @@
         badges: ["Корпоративно", "Лично", "Под бюджет"],
         icon: "ph-gift",
         items: [
-          ["Набор для партнера", "Строгий и тёплый", "sets"],
-          ["Праздничный набор", "Для команды или события", "sets"],
-          ["Домашний набор", "Керамика и сладкое", "sets"]
+          {title:"Набор для партнера", desc:"Строгий и тёплый", icon:"sets", meta:"Сборный набор"},
+          {title:"Праздничный набор", desc:"Для команды или события", icon:"sets", meta:"Сборный набор"},
+          {title:"Домашний набор", desc:"Керамика и сладкое", icon:"sets", meta:"Сборный набор"}
         ]
       }
     };
@@ -535,21 +558,62 @@
     const text = document.getElementById("categoryText");
     const badges = document.getElementById("categoryBadges");
     const grid = document.getElementById("productGrid");
+    const showcasePrev = document.getElementById("showcasePrev");
+    const showcaseNext = document.getElementById("showcaseNext");
+    const showcaseDots = document.getElementById("showcaseDots");
+    let showcaseIdx = 0;
+    let showcaseItems = [];
+
+    function getVisible(){ if(window.innerWidth<=768) return 1; if(window.innerWidth<=1024) return 2; return 3; }
+    function maxIdx(){ return Math.max(0, showcaseItems.length - getVisible()); }
+    function updateShowcase(){
+      const gap=16;
+      const visible=getVisible();
+      const trackW = grid.parentElement ? grid.parentElement.clientWidth : 0;
+      const cardW = visible ? (trackW - gap*(visible-1))/visible : 300;
+      const x = -(showcaseIdx * (cardW + gap));
+      grid.style.transform = `translateX(${x}px)`;
+      const total = maxIdx()+1;
+      if(showcaseDots){
+        showcaseDots.innerHTML = Array.from({length:total},(_,i)=>`<button class="showcase-dot${i===showcaseIdx?' active':''}" data-i="${i}" aria-label="Стр. ${i+1}"></button>`).join("");
+        showcaseDots.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{showcaseIdx=+b.dataset.i; updateShowcase(); updateShowcaseNav();}));
+      }
+      updateShowcaseNav();
+    }
+    function updateShowcaseNav(){
+      if(showcasePrev) showcasePrev.disabled = showcaseIdx===0;
+      if(showcaseNext) showcaseNext.disabled = showcaseIdx>=maxIdx();
+    }
     function renderCategory(cat){
       const d = catalog[cat];
       title.textContent = d.title;
       text.textContent = d.text;
       badges.innerHTML = d.badges.map(b=>`<span class="badge">${b}</span>`).join("");
-      grid.innerHTML = d.items.map(it=>`
-        <article class="item-card">
-          <div class="item-image item-image--${it[2]}" aria-hidden="true"><i class="ph ${iconMap[it[2]]}"></i></div>
+      showcaseItems = d.items;
+      showcaseIdx = 0;
+      grid.innerHTML = d.items.map((it,i)=> {
+        const imgPart = it.img ? `<img src="${it.img}" alt="${it.title} — ${it.meta}" loading="lazy">` : `<i class="ph ${iconMap[it.icon] || 'ph-image'}"></i>`;
+        const imgCls = it.img ? 'item-image' : `item-image item-image--placeholder item-image--${it.icon}`;
+        return `
+        <article class="item-card" data-idx="${i}" data-title="${it.title}" data-meta="${it.meta}" data-img="${it.img||''}">
+          <div class="${imgCls}" aria-hidden="true">${imgPart}</div>
           <div class="item-content">
-            <p class="item-title">${it[0]}</p>
-            <p class="item-desc">${it[1]}</p>
-            <span class="item-meta">пример карточки</span>
+            <p class="item-title">${it.title}</p>
+            <p class="item-desc">${it.desc}</p>
+            <span class="item-meta">${it.meta}</span>
           </div>
-        </article>
-      `).join("");
+        </article>`;
+      }).join("");
+      // bind lightbox on cards
+      grid.querySelectorAll(".item-card").forEach(card=>{
+        card.addEventListener("click",()=>{
+          const img = card.dataset.img;
+          if(!img) return; // иконки не открываем
+          openShowcaseLB(+card.dataset.idx);
+        });
+      });
+      // reset transform after render (wait layout)
+      requestAnimationFrame(()=>{ updateShowcase(); });
     }
     tabs.forEach(tab=>{
       tab.addEventListener("click",()=>{
@@ -559,6 +623,35 @@
       });
     });
     renderCategory("ceramics");
+    showcasePrev?.addEventListener("click",()=>{ if(showcaseIdx>0){ showcaseIdx--; updateShowcase(); }});
+    showcaseNext?.addEventListener("click",()=>{ if(showcaseIdx<maxIdx()){ showcaseIdx++; updateShowcase(); }});
+    window.addEventListener("resize", updateShowcase);
+    // swipe for showcase
+    (function(){
+      let sx=0, dx=0;
+      grid.addEventListener("touchstart", e=>{ sx=e.touches[0].clientX; }, {passive:true});
+      grid.addEventListener("touchmove", e=>{ dx=e.touches[0].clientX - sx; }, {passive:true});
+      grid.addEventListener("touchend", ()=>{
+        if(Math.abs(dx)>40){ if(dx<0 && showcaseIdx<maxIdx()) showcaseIdx++; else if(dx>0 && showcaseIdx>0) showcaseIdx--; updateShowcase(); }
+        dx=0;
+      });
+    })();
+    // showcase lightbox helper
+    function openShowcaseLB(i){
+      const it = showcaseItems[i];
+      if(!it || !it.img) return;
+      const lb = document.getElementById("lightbox");
+      document.getElementById("lightboxImg").src = it.img;
+      document.getElementById("lightboxImg").alt = it.title + " — " + it.meta;
+      document.getElementById("lightboxTitle").textContent = it.title;
+      document.getElementById("lightboxMeta").textContent = it.meta + " · " + it.desc;
+      lb.classList.add("active");
+      lb.setAttribute("aria-hidden","false");
+      document.body.style.overflow="hidden";
+      // remember showcase index for LB navigation
+      lb.dataset.mode="showcase";
+      lb.dataset.idx=i;
+    }
 
     // burger like cvety
     const burger = document.getElementById("burger");
@@ -630,6 +723,8 @@
         lbImg.alt = s.querySelector("img").alt;
         lbTitle.textContent = s.dataset.title;
         lbMeta.textContent = s.dataset.meta;
+        lightbox.dataset.mode="hero";
+        lightbox.dataset.idx=i;
         lightbox.classList.add("active");
         lightbox.setAttribute("aria-hidden","false");
         document.body.style.overflow="hidden";
@@ -642,16 +737,55 @@
         restartAuto();
       }
       slides.forEach((s,i)=> s.addEventListener("click", ()=> openLB(i)) );
-      document.getElementById("lightboxClose")?.addEventListener("click", closeLB);
-      document.getElementById("lightboxPrev")?.addEventListener("click", ()=>{ idx=(idx-1+slides.length)%slides.length; openLB(idx); });
-      document.getElementById("lightboxNext")?.addEventListener("click", ()=>{ idx=(idx+1)%slides.length; openLB(idx); });
-      lightbox?.addEventListener("click", e=>{ if(e.target===lightbox) closeLB(); });
-      document.addEventListener("keydown", e=>{
-        if(!lightbox.classList.contains("active")) return;
-        if(e.key==="Escape") closeLB();
-        if(e.key==="ArrowLeft") document.getElementById("lightboxPrev")?.click();
-        if(e.key==="ArrowRight") document.getElementById("lightboxNext")?.click();
-      });
+      // shared close
+      const lbCloseBtn = document.getElementById("lightboxClose");
+      // avoid stacking listeners: hero is owner of close, but ensure single handler
+      if(lbCloseBtn && !lbCloseBtn.dataset.bound){
+        lbCloseBtn.dataset.bound="1";
+        lbCloseBtn.addEventListener("click", closeLB);
+        lightbox?.addEventListener("click", e=>{ if(e.target===lightbox) closeLB(); });
+        document.addEventListener("keydown", e=>{
+          if(!lightbox.classList.contains("active")) return;
+          if(e.key==="Escape") closeLB();
+          if(e.key==="ArrowLeft") document.getElementById("lightboxPrev")?.click();
+          if(e.key==="ArrowRight") document.getElementById("lightboxNext")?.click();
+        });
+      }
+      // unified prev/next that handles both hero and showcase modes
+      function bindLBNav(){
+        const prev = document.getElementById("lightboxPrev");
+        const next = document.getElementById("lightboxNext");
+        if(prev && !prev.dataset.bound){
+          prev.dataset.bound="1";
+          prev.addEventListener("click", ()=>{
+            if(lightbox.dataset.mode==="showcase"){
+              let i=+lightbox.dataset.idx;
+              i=(i-1+showcaseItems.length)%showcaseItems.length;
+              // skip placeholders without img
+              let tries=showcaseItems.length;
+              while(tries-- && !showcaseItems[i].img){ i=(i-1+showcaseItems.length)%showcaseItems.length; }
+              openShowcaseLB(i);
+            } else {
+              idx=(idx-1+slides.length)%slides.length; openLB(idx);
+            }
+          });
+        }
+        if(next && !next.dataset.bound){
+          next.dataset.bound="1";
+          next.addEventListener("click", ()=>{
+            if(lightbox.dataset.mode==="showcase"){
+              let i=+lightbox.dataset.idx;
+              i=(i+1)%showcaseItems.length;
+              let tries=showcaseItems.length;
+              while(tries-- && !showcaseItems[i].img){ i=(i+1)%showcaseItems.length; }
+              openShowcaseLB(i);
+            } else {
+              idx=(idx+1)%slides.length; openLB(idx);
+            }
+          });
+        }
+      }
+      bindLBNav();
 
       buildDots();
       update();
