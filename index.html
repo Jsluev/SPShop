@@ -176,12 +176,12 @@
     .lightbox__cap-meta{font-size:0.88rem;color:var(--gray);margin-top:4px}
 
     /* SECTIONS */
-    .section{padding:60px 0}
+    .section{padding:48px 0}
     .section--cream{background:var(--cream)}
     .section--white{background:var(--white)}
     .section--dark{background:linear-gradient(160deg, var(--blue-dark) 0%, #1E3A5F 50%, #2C4A6E 100%);position:relative;overflow:hidden}
     .section--dark::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle, rgba(229,168,61,0.08) 0%, transparent 70%)}
-    .section-header{text-align:center;margin-bottom:48px;position:relative}
+    .section-header{text-align:center;margin-bottom:32px;position:relative}
     .section-tag{display:inline-block;padding:6px 16px;background:rgba(91,142,201,0.08);color:var(--blue-deep);border-radius:100px;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px}
     .section-tag--light{background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8)}
     .section-title{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:600;color:var(--dark);line-height:1.15;letter-spacing:-0.01em}
@@ -190,13 +190,13 @@
     .section-desc--light{color:rgba(255,255,255,0.7)}
 
     /* SHOWCASE */
-    .showcase{background:var(--white);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);border:1px solid rgba(45,55,72,0.06)}
+    .showcase{background:var(--white);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:1px solid rgba(45,55,72,0.06)}
     .tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
     .tab{min-height:44px;padding:11px 18px;border:1px solid rgba(45,55,72,0.08);border-radius:100px;color:var(--dark-soft);background:var(--gray-bg);font:inherit;font-weight:600;font-size:0.9rem;cursor:pointer;transition:var(--transition)}
     .tab:hover{background:var(--white);border-color:rgba(91,142,201,0.2);transform:translateY(-1px)}
     .tab[aria-selected="true"]{color:var(--white);background:var(--blue-dark);border-color:var(--blue-dark);box-shadow:0 4px 16px rgba(44,82,130,0.25)}
-    .showcase-body{display:grid;grid-template-columns:0.38fr 1fr;gap:24px;align-items:start;width:100%;max-width:100%}
-    .workshop-note{padding:28px;background:var(--cream-warm);border-radius:var(--radius-md);border:1px solid rgba(229,168,61,0.12);position:sticky;top:88px;min-width:0;max-width:100%}
+    .showcase-body{display:grid;grid-template-columns:0.32fr 1fr;gap:16px;align-items:start;width:100%;max-width:100%}
+    .workshop-note{padding:20px;background:var(--cream-warm);border-radius:var(--radius-md);border:1px solid rgba(229,168,61,0.12);position:sticky;top:88px;min-width:0;max-width:100%}
     .workshop-note h3{font-size:1.15rem;font-weight:600;margin-bottom:10px}
     .workshop-note p{font-size:0.92rem;color:var(--gray);line-height:1.65;margin-bottom:16px}
     .badge-line{display:flex;flex-wrap:wrap;gap:8px}
@@ -208,8 +208,8 @@
     .order-hint strong{color:var(--blue-dark);font-weight:700}
     /* showcase slider */
     .showcase-slider{position:relative;overflow:hidden;width:100%;max-width:100%;min-width:0}
-    .showcase-track{display:flex;gap:16px;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);will-change:transform}
-    .showcase-track .item-card{flex:0 0 calc((100% - 32px)/3);min-width:0}
+    .showcase-track{display:flex;gap:12px;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);will-change:transform}
+    .showcase-track .item-card{flex:0 0 calc((100% - 24px)/3);min-width:0}
     .showcase-btn{position:absolute;top:42%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:var(--white);color:var(--dark);box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:var(--transition);z-index:2}
     .showcase-btn:hover{background:var(--blue-dark);color:var(--white)}
     .showcase-btn:disabled{opacity:0.35;pointer-events:none}
@@ -220,7 +220,7 @@
     .showcase-dot.active{background:var(--blue-dark)}
     .item-card{display:flex;flex-direction:column;background:var(--white);border:1px solid rgba(45,55,72,0.06);border-radius:var(--radius-md);overflow:hidden;transition:var(--transition);cursor:zoom-in}
     .item-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:rgba(91,142,201,0.15)}
-    .item-image{position:relative;height:260px;background:var(--cream);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:0}
+    .item-image{position:relative;height:320px;background:var(--cream);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:0}
     .item-image img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;display:block;transition:transform 0.5s ease}
     .item-card:hover .item-image img{transform:scale(1.03)}
     .item-image--placeholder::before{content:"";position:absolute;inset:22px;border-radius:var(--radius-sm);background:linear-gradient(145deg, #fff, rgba(91,142,201,0.12));box-shadow:inset -14px -18px 0 rgba(45,55,72,0.04)}
@@ -281,14 +281,13 @@
     .zakaz-card--form{border-color:rgba(232,115,90,0.18);background:linear-gradient(180deg, var(--white) 0%, #FFF6F3 100%)}
     @media (max-width:768px){ .zakaz-grid{grid-template-columns:1fr} }
     /* LAVKA */
-    .lavka-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .lavka-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     .lavka-card{border-radius:var(--radius-md);overflow:hidden;background:var(--white);box-shadow:var(--shadow-sm);border:1px solid rgba(45,55,72,0.06);cursor:zoom-in}
-    .lavka-card img{width:100%;height:220px;object-fit:cover;display:block;transition:transform 0.5s ease;object-position:center}
+    .lavka-card img{width:100%;height:280px;object-fit:cover;display:block;transition:transform 0.5s ease;object-position:center}
     .lavka-card:first-child img{object-position:bottom}
     .lavka-card:hover img{transform:scale(1.03)}
-    .lavka-card figcaption{padding:12px 14px;font-size:0.85rem;color:var(--gray);text-align:center;background:var(--white)}
     @media (max-width:900px){ .lavka-grid{grid-template-columns:repeat(2,1fr)} }
-    @media (max-width:560px){ .lavka-grid{grid-template-columns:1fr} .lavka-card img{height:200px} }
+    @media (max-width:560px){ .lavka-grid{grid-template-columns:1fr} .lavka-card img{height:240px} }
 
     /* FOOTER */
     .footer{background:var(--dark);padding:40px 0}
@@ -306,7 +305,7 @@
       .hero{padding-bottom:24px}
       .hero__slider{max-width:560px;margin:0 auto 12px}
       .hero__content{max-width:100%}
-      .showcase-track .item-card{flex:0 0 calc((100% - 16px)/2)}
+      .showcase-track .item-card{flex:0 0 calc((100% - 12px)/2)}
       .story-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
       .paths{grid-template-columns:1fr}
       .showcase-body{grid-template-columns:1fr}
@@ -385,7 +384,7 @@
         <div class="hero__content">
           <div class="hero__badge"><i class="ph ph-storefront"></i> Мастерские «Школы профессий»</div>
           <h1 class="hero__title">Подарки, которые сделаны руками и имеют смысл</h1>
-          <p class="hero__subtitle">Керамика, текстиль, кондитерская, малые подарки и подарочные наборы — каждая вещь создана вручную в мастерских, где нейроотличные люди учатся профессии и получают работу.</p>
+          <p class="hero__subtitle">Керамика, текстиль, сладости и наборы ручной работы — поддерживают рабочие места.</p>
           <div class="hero__cta">
             <a class="btn btn--dark btn--lg" href="#market"><i class="ph ph-shopping-bag"></i> Смотреть готовые изделия</a>
             <a class="btn btn--primary btn--lg" href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener"><i class="ph ph-pencil-simple"></i> Оставить заявку</a>
@@ -430,8 +429,8 @@
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Живая витрина</span>
-          <h2 class="section-title">Переключайтесь между мастерскими<br>и смотрите варианты прямо здесь</h2>
-          <p class="section-desc">Каждая вещь сделана вручную, поэтому немного отличается формой и оттенком — так и должно быть. Это не серийное производство, а личный подарок.</p>
+          <h2 class="section-title">Переключайтесь между мастерскими<br>и смотрите варианты</h2>
+          <p class="section-desc">Каждая вещь чуть отличается — это ручная работа.</p>
         </div>
         <div class="showcase">
           <div class="tabs" role="tablist" aria-label="Категории изделий">
@@ -473,27 +472,27 @@
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Почему это важно</span>
-          <h2 class="section-title">Это не сувенирная лавка,<br>а продолжение учебных мастерских</h2>
-          <p class="section-desc">Вы выбираете красивую вещь ручной работы — и одновременно поддерживаете среду, где люди осваивают профессию.</p>
+          <h2 class="section-title">Это не лавка,<br>а мастерские</h2>
+          <p class="section-desc">Красивая вещь и поддержка мастерских.</p>
         </div>
         <div class="story-grid">
           <article class="story-card">
             <div class="story-card__icon"><i class="ph ph-hammer"></i></div>
             <span class="story-card__num">01 — РЕАЛЬНАЯ РАБОТА</span>
             <h3>Изделия из мастерских</h3>
-            <p>Участники осваивают процессы, материалы и ответственность за результат. Каждая вещь — итог обучения.</p>
+            <p>Учатся работать с материалами и отвечать за результат.</p>
           </article>
           <article class="story-card">
             <div class="story-card__icon"><i class="ph ph-heart"></i></div>
             <span class="story-card__num">02 — ПОНЯТНЫЙ ПОДАРОК</span>
             <h3>Без лишних объяснений</h3>
-            <p>Не нужно глубоко разбираться в проекте — достаточно увидеть красивые вещи и понятные сценарии покупки.</p>
+            <p>Достаточно увидеть вещи и выбрать.</p>
           </article>
           <article class="story-card">
             <div class="story-card__icon"><i class="ph ph-package"></i></div>
-            <span class="story-card__num">03 — МОЖНО СОБРАТЬ НАБОР</span>
+            <span class="story-card__num">03 — ПОД ЗАДАЧУ</span>
             <h3>Под повод и бюджет</h3>
-            <p>Для команды, события или личного повода соберём подборку с учётом количества получателей и сроков.</p>
+            <p>Соберём под количество и сроки.</p>
           </article>
         </div>
       </div>
@@ -504,32 +503,30 @@
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Два пути</span>
-          <h2 class="section-title">Купить готовое или собрать под задачу</h2>
+          <h2 class="section-title">Готовое или под заказ</h2>
         </div>
         <div class="paths">
           <article class="path-card">
             <span class="path-card__tag">Готовые изделия</span>
-            <h3>Выбрать то, что уже есть в продаже</h3>
-            <p>Готовые вещи уже на Яндекс Маркете — с фото, ценами, наличием и доставкой. Выбирайте и оформляйте без ожидания.</p>
+            <h3>Готовое в наличии</h3>
+            <p>На Маркете — фото, цены, доставка. Берите сразу.</p>
             <ul class="path-list">
-              <li>подходит, если нужен подарок без долгого согласования;</li>
-              <li>видно наличие, карточки и условия доставки;</li>
-              <li>сразу понимаете, что это за вещи и кто их делает.</li>
+              <li>без долгого согласования;</li>
+              <li>видно наличие и доставку.</li>
             </ul>
-            <a class="btn btn--dark" href="https://market.yandex.ru/business--raznye-zerna/212747076" target="_blank" rel="noopener"><i class="ph ph-shopping-bag"></i> Перейти на Яндекс Маркет</a>
-            <p class="path-card__note">Магазин «Разные Зёрна» · также есть <a href="https://market.yandex.ru/business--otkrytaia-kukhnia/209729905" target="_blank" rel="noopener">«Открытая кухня» на Маркете</a></p>
+            <a class="btn btn--dark" href="https://market.yandex.ru/business--raznye-zerna/212747076" target="_blank" rel="noopener"><i class="ph ph-shopping-bag"></i> На Маркет</a>
+            <p class="path-card__note">«Разные Зёрна» · <a href="https://market.yandex.ru/business--otkrytaia-kukhnia/209729905" target="_blank" rel="noopener">«Открытая кухня»</a></p>
           </article>
           <article class="path-card path-card--dark" id="order">
-            <span class="path-card__tag">Наборы на заказ</span>
-            <h3>Собрать подарок под повод, людей и бюджет</h3>
-            <p>Для корпоративных подарков, партнёрских наборов и личных праздников — подберём состав, учтём упаковку и сроки.</p>
+            <span class="path-card__tag">На заказ</span>
+            <h3>Под ваш повод</h3>
+            <p>Соберём состав и упаковку под задачу.</p>
             <ul class="path-list">
-              <li>комбинируем изделия из разных мастерских;</li>
-              <li>учтём количество, бюджет, упаковку и сроки;</li>
-              <li>можно сделать набор теплее, строже или праздничнее.</li>
+              <li>из разных мастерских;</li>
+              <li>под количество и бюджет.</li>
             </ul>
-            <a class="btn btn--primary" href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener"><i class="ph ph-pencil-simple"></i> Заполнить форму заказа</a>
-            <p class="path-card__note">Или напишите на <a href="mailto:info@shkola-professii.ru">info@shkola-professii.ru</a> · Надежда Ворожкина: <a href="tel:+79166414683">+7 (916) 641-46-83</a></p>
+            <a class="btn btn--primary" href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener"><i class="ph ph-pencil-simple"></i> Оставить заявку</a>
+            <p class="path-card__note"><a href="mailto:info@shkola-professii.ru">info@shkola-professii.ru</a> · <a href="tel:+79166414683">+7 (916) 641-46-83</a></p>
           </article>
         </div>
       </div>
@@ -540,26 +537,26 @@
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Связаться</span>
-          <h2 class="section-title">Понравилась вещь или захотели что-то похожее?</h2>
-          <p class="section-desc">Посмотрите, что делают наши мастерские — керамика, текстиль, сладости и мелочи ручной работы. Выберите близкое по духу, а мы подберём цвет, размер и количество: покажем, что есть в наличии, и что можем сделать на заказ под ваш повод.</p>
+          <h2 class="section-title">Понравилось? Напишите</h2>
+          <p class="section-desc">Выберите близкое — подберём цвет и тираж, покажем наличие.</p>
         </div>
         <div class="zakaz-grid">
           <div class="zakaz-card zakaz-card--contact">
             <div class="zakaz-card__icon"><i class="ph ph-chats-circle"></i></div>
-            <h3>Свяжитесь напрямую</h3>
-            <p>Отвечает Надежда Ворожкина — координатор мастерских. Быстрее всего — звонок или почта.</p>
+            <h3>Напрямую</h3>
+            <p>Надежда Ворожкина — координатор. Быстрее — звонок.</p>
             <div class="zakaz-contacts">
               <a href="tel:+79166414683" class="zakaz-contact"><i class="ph ph-phone"></i> +7 (916) 641-46-83</a>
               <a href="mailto:info@shkola-professii.ru" class="zakaz-contact"><i class="ph ph-envelope"></i> info@shkola-professii.ru</a>
             </div>
-            <p class="zakaz-note">Можно прислать фото понравившейся вещи из витрины — подберём похожее.</p>
+            <p class="zakaz-note">Пришлите фото из витрины — подберём похожее.</p>
           </div>
           <div class="zakaz-card zakaz-card--form">
             <div class="zakaz-card__icon" style="background:rgba(232,115,90,0.12);color:var(--red)"><i class="ph ph-pencil-simple"></i></div>
-            <h3>Оставить заявку</h3>
-            <p>Форма на Яндекс Формах — 2 минуты. Укажите что понравилось, количество и повод, мы перезвоним.</p>
-            <a href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener" class="btn btn--primary" style="width:100%;margin-top:8px"><i class="ph ph-arrow-up-right"></i> Заполнить форму на Яндекс Формах</a>
-            <p class="zakaz-note">Откроется в новой вкладке</p>
+            <h3>Заявка</h3>
+            <p>2 минуты: что понравилось, количество, повод.</p>
+            <a href="https://forms.yandex.ru/u/69b0458c02848f104410db9a" target="_blank" rel="noopener" class="btn btn--primary" style="width:100%;margin-top:8px"><i class="ph ph-arrow-up-right"></i> Заполнить форму</a>
+            <p class="zakaz-note">Новая вкладка</p>
           </div>
         </div>
       </div>
@@ -569,9 +566,9 @@
     <section class="section section--cream" id="lavka">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Можно посмотреть вживую</span>
-          <h2 class="section-title">Уголок-лавка в «Разных зёрнах»</h2>
-          <p class="section-desc">В кафе «Разные зёрна» есть небольшой магазин — там уже выставлены многие изделия из витрины. Приходите, рассмотрите, потрогайте, выберите на месте. А если нужно много или «такое же, но...» — обсудим на месте или по заявке.</p>
+          <span class="section-tag">Вживую</span>
+          <h2 class="section-title">Лавка в «Разных зёрнах»</h2>
+          <p class="section-desc">Полочки с изделиями — приходите посмотреть и потрогать.</p>
         </div>
         <div class="lavka-grid">
           <figure class="lavka-card" data-idx="0"><img src="images/РЗ1.jpg" alt="Лавка в Разных зёрнах — полочки с изделиями" loading="lazy"></figure>
@@ -618,7 +615,7 @@
     const catalog = {
       ceramics: {
         title: "Керамическая мастерская",
-        text: "Чашки, тарелки, кашпо и небольшие блюда — каждая вещь с уникальной глазурью, немного отличается формой. Сделано вручную, не серийно.",
+        text: "Посуда с глазурью. Ручная работа.",
         badges: ["Посуда", "Глазурь", "Подарок домой"],
         icon: "ph-coffee",
         items: [
@@ -632,7 +629,7 @@
       },
       textile: {
         title: "Текстиль и вязание",
-        text: "Мягкие вещи для тёплого личного подарка: пеналы, клатчи, шарфы, подставки и футболки — всё связано и сшито вручную.",
+        text: "Тёплые вещи ручной вязки и шитья.",
         badges: ["Теплый подарок", "Дом", "Мягкие фактуры"],
         icon: "ph-t-shirt",
         items: [
@@ -646,7 +643,7 @@
       },
       small: {
         title: "Кондитерская",
-        text: "Варенье, чай и конфеты ручной работы — фирменные сладости «Разных зёрен». Делают вручную, отлично собираются в наборы с керамикой.",
+        text: "Сладости ручной работы — для наборов с керамикой.",
         badges: ["Варенье", "Чай", "Конфеты"],
         icon: "ph-cookie",
         items: [
@@ -659,7 +656,7 @@
       },
       gifts: {
         title: "Малые подарки",
-        text: "Небольшие, но тёплые вещи — брелки, свечи, подсвечники и пальчиковые куклы. Отлично дополнят любой набор.",
+        text: "Мелочи для дополнения наборов.",
         badges: ["Брелки", "Свечи", "Сувениры"],
         icon: "ph-star",
         items: [
@@ -672,7 +669,7 @@
       },
       sets: {
         title: "Подарочные наборы",
-        text: "Готовые сочетания из разных мастерских: керамика + варенье + текстиль + открытка. Подберём под повод, бюджет и количество получателей.",
+        text: "Сочетания из разных мастерских под ваш повод.",
         badges: ["Корпоративно", "Лично", "Под бюджет"],
         icon: "ph-gift",
         items: [
@@ -700,7 +697,7 @@
     function getVisible(){ if(window.innerWidth<=768) return 1; if(window.innerWidth<=1024) return 2; return 3; }
     function maxIdx(){ return Math.max(0, showcaseItems.length - getVisible()); }
     function updateShowcase(){
-      const gap=16;
+      const gap=12;
       const visible=getVisible();
       const trackW = grid.parentElement ? grid.parentElement.clientWidth : 0;
       const cardW = visible ? (trackW - gap*(visible-1))/visible : 300;
